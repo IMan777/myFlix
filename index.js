@@ -66,7 +66,7 @@ app.get('/', function(req, res) {
   res.send('<h3>Welcome!</h3>' )
 });
 app.get('/info', function(req, res) {
-  res.send('<h4>Please Navigate To The Movies To View My Top 10 Movies</h4')
+  res.send('<h4>Please Navigate To The Movies Section To View My Top 10 Movies</h4')
 });
 
 /* Send Request Function Not Needed Due To Express Static Being Used
