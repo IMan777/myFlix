@@ -22,7 +22,7 @@ let myMovies = [
 {
     movieTitle : 'Green Mile',
     type : 'Fantasy Crime',
-     year: '1999'
+    year: '1999'
 },
 {
     movieTitle : 'The Good, The Bad & The Ugly',
