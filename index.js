@@ -27,7 +27,7 @@ let myMovies = [
 {
     movieTitle : 'The Good, The Bad & The Ugly',
     type : 'Western',
-     year: '1967'
+    year: '1967'
 },
 {
     movieTitle : 'Heat',
