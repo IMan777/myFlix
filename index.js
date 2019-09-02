@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const port = process.env.port || 8080;
 
-let myMovies = [ 
+let myMovies = [  /*Object Array Of Favorite Movies*/
 {
     movieTitle : 'Shawshank Redemption',
     type : 'Drama',
