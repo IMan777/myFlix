@@ -12,12 +12,12 @@ let myMovies = [
 {
     movieTitle : 'Goodfellas',
     type : 'Crime Biography',
-     year: '1990'
+    year: '1990'
 },
 {
     movieTitle : 'Malcolm X',
     type : 'Biography',
-     year: ' 1992'
+    year: ' 1992'
 },
 {
     movieTitle : 'Green Mile',
@@ -32,27 +32,27 @@ let myMovies = [
 {
     movieTitle : 'Heat',
     category : 'Crime Thriller',
-     year: '1995'
+    year: '1995'
 },
 {
     movieTitle : 'Training Day',
     category : 'Crime Thriller',
-     year: '2001'
+    year: '2001'
 },
 {
     movieTitle : 'Ray',
     category : 'Biography Drama',
-     year: '2004'
+    year: '2004'
 },
 {
     movieTitle : 'The Dark Knight',
     category : 'Crime Thriller',
-     year: '2008'
+    year: '2008'
 },
 {
     movieTitle : 'Avengers: Endgame',
     category : 'Fantasy Sci-Fi',
-     year: '2019'
+    year: '2019'
 },
 ]
 
