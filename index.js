@@ -7,52 +7,52 @@ let myMovies = [
 {
     movieTitle : 'Shawshank Redemption',
     type : 'Drama',
-    year: '  '
+    year: '1994'
 },
 {
     movieTitle : 'Goodfellas',
     type : 'Crime Biography',
-     year: '  '
+     year: '1990'
 },
 {
     movieTitle : 'Malcolm X',
     type : 'Biography',
-     year: '  '
+     year: ' 1992'
 },
 {
     movieTitle : 'Green Mile',
     type : 'Fantasy Crime',
-     year: '  '
+     year: '1999'
 },
 {
     movieTitle : 'The Good, The Bad & The Ugly',
     type : 'Western',
-     year: '  '
+     year: '1967'
 },
 {
     movieTitle : 'Heat',
     category : 'Crime Thriller',
-     year: '  '
+     year: '1995'
 },
 {
     movieTitle : 'Training Day',
     category : 'Crime Thriller',
-     year: '  '
+     year: '2001'
 },
 {
     movieTitle : 'Ray',
     category : 'Biography Drama',
-     year: '  '
+     year: '2004'
 },
 {
     movieTitle : 'The Dark Knight',
     category : 'Crime Thriller',
-     year: '  '
+     year: '2008'
 },
 {
     movieTitle : 'Avengers: Endgame',
     category : 'Fantasy Sci-Fi',
-     year: '  '
+     year: '2019'
 },
 ]
 
@@ -63,10 +63,10 @@ app.use(morgan('common'));/*Log Info With Morgon*/
 
 // GET Requests
 app.get('/', function(req, res) {
-  res.send('Home Page' )
+  res.send('<h3>Welcome!</h3>' )
 });
 app.get('/info', function(req, res) {
-  res.send('<h2>Please Navigate To The Movies To View My Top 10 Movies</h2')
+  res.send('<h4>Please Navigate To The Movies To View My Top 10 Movies</h4')
 });
 
 /* Send Request Function Not Needed Due To Express Static Being Used
