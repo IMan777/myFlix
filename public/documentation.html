@@ -1,1 +1,297 @@
-<h1>My Flix</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"><!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <title>Documentation</title>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-light bg-dark">
+      <span class="navbar-brand mb-0 h1">Documentation</span>
+    </nav>
+  </header>
+  <section class="container-fluid">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Method</th>
+          <th scope="col">Endpoint URL</th>
+          <th scope="col">Body Request</th>
+          <th scope="col">Body Response</th>
+          <th scope="col">Endpoint Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Get</td>
+          <td>
+            <p>http://localhost:8080/movies/:title</p>
+            <p>http://localhost:8080/movies/Goodfellas</p>
+          </td>
+          <td>None</td>
+          <td>
+            <pre>
+<code>
+{
+"id": 2,
+"title": "Goodfellas",
+"genre": "Crime Biography",
+"year": 1990,
+"imgURL": "",
+"director": {
+"name": "Martin Scorsese",
+"birthYear": 1942,
+"deathYear": 0
+}
+}
+</code>
+</pre>
+          </td>
+          <td>This Endpoint Retrieves Info About A movie By Its Title.</td>
+        </tr>
+        <tr>
+          <td>Get</td>
+          <td>http://localhost:8080/movies/</td>
+          <td>None</td>
+          <td>A List Of All Movies Will Be Displayed In JSON Format</td>
+          <td>This Endpoint Will Retrieve A List Of All Movies On The List</td>
+        </tr>
+        <tr>
+          <td>Get</td>
+          <td>
+            <p>http://localhost:8080/genre/:genre</p>
+            <p>http://localhost:8080/genre/Crime Biography</p>
+          </td>
+          <td>None</td>
+          <td>
+            <pre>
+<code>
+{
+"id": 2,
+"title": "Goodfellas",
+"genre": "Crime Biography",
+"year": 1990,
+"imgURL": "",
+"director": {
+"name": "Martin Scorsese",
+"birthYear": 1942,
+"deathYear": 0
+}
+}
+</code>
+</pre>
+          </td>
+          <td>This Endpoint Will Retrieve All Movies According To The Genre</td>
+        </tr>
+        <tr>
+          <td>Get</td>
+          <td>
+            <p>http://localhost:8080/director/:name</p>
+            <p>http://localhost:8080/director/Frank Darabont</p>
+          </td>
+          <td>None</td>
+          <td>
+            <pre>
+<code>
+{
+"name": "Frank Darabont",
+"birthYear": 1959,
+"deathYear": 0
+}
+</code>
+</pre>
+          </td>
+          <td>This Endpoint Will Retrieve A Movie Director's Bio By His/Her Name</td>
+        </tr>
+        <tr>
+          <td>Post</td>
+          <td>http://localhost:8080/movies</td>
+          <td>
+            <pre>
+<code>
+{
+"title":"Example Movie Title",
+"genre": "Biography",
+"year": 1999,
+"imgURL": "",
+"director":{
+"name":"Director",
+"birthYear":1945 ,
+"deathYear": 0
+}
+}
+</code>
+</pre>
+          </td>
+          <td>
+            <pre>
+<code>
+{
+"title": "Example Movie Title",
+"genre": "Biography",
+"year": 1999,
+"imgURL": "",
+"director": {
+"name": "Director",
+"birthYear": 1945,
+"deathYear": 0
+},
+"id": "88c80d4b-62e0-42bc-ba4c-c7dbb2f97bfb"
+}
+</code>
+</pre>
+          </td>
+          <td>This Endpoint Is Used To Add A Movie To The List</td>
+        </tr>
+        <tr>
+          <td>Delete</td>
+          <td>http://localhost:8080/movies/:id</td>
+          <td>None</td>
+          <td>
+            <p>"Movie [id#] deleted from list." Will Be Returned As Confirmation Of Deletion</p>
+          </td>
+          <td>
+            <p>This Endpoint Will Delete A Movie From The List By Id. Message</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Get</td>
+          <td>http://localhost:8080/members</td>
+          <td>None</td>
+          <td>
+            <pre>
+<code>
+{
+"id": 1,
+"fullName": "John Doe",
+"userName": "JDManX",
+"pswrd": "DJ$#75N",
+"email": "johndoe@yahoo.com",
+"dob": "11/15/1975",
+"favMovies": [
+2
+]
+}
+</code>
+</pre>
+          </td>
+          <td>This Endpoint Will Display A List Of All The Members And Info</td>
+        </tr>
+        <tr>
+          <td>Post</td>
+          <td>http://localhost:8080/members</td>
+          <td>
+            <pre>
+<code>
+{
+"id":"",
+"fullName": "Ivan Eugene",
+"userName": "IJMan",
+"pswrd": "DQW42&#",
+"email": "ivan@yahoo.com",
+"dob": "9/30/74",
+"favMovie":["5","4"]
+}
+</code>
+</pre>
+          </td>
+          <td>
+            <pre>
+<code>
+{
+"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
+"fullName": "Ivan Eugene",
+"userName": "IJMan",
+"pswrd": "DQW42&#",
+"email": "ivan@yahoo.com",
+"dob": "9/30/74",
+"favMovie": [
+"5",
+"4"
+]
+}
+</code>
+</pre>
+          </td>
+          <td>This Endpoint Allows A New Member To Be Added</td>
+        </tr>
+        <tr>
+          <td>Put</td>
+          <td>http://localhost:8080/members/:id</td>
+          <td>
+            Made Changes To Username,Password,Email & Favorite Movies List
+            <pre>
+<code>
+{
+"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
+"fullName": "Ivan Eugene",
+"userName": "IJManX87$",
+"pswrd": "DQW42&#820$",
+"email": "ivaneugene@yahoo.com",
+"dob": "9/30/74",
+"favMovie": [
+"5",
+"4",
+"3",
+"9",
+]
+}
+</code>
+</pre>
+          </td>
+          <td>
+            Updates Confirmed
+            <pre>
+<code>
+{
+"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
+"fullName": "Ivan Eugene",
+"userName": "IJManX87$",
+"pswrd": "DQW42&#820$",
+"email": "ivaneugene@yahoo.com",
+"dob": "9/30/74",
+"favMovie": [
+"5",
+"4",
+"3",
+"9"
+]
+}
+</code>
+</pre>
+          </td>
+          <td>
+            <p>This Endpoint Will Allow A Member To Update Their Info:</p>
+            <p></p>
+            <ul>
+              <li>Full Name</li>
+              <li>Username</li>
+              <li>Password</li>
+              <li>Email</li>
+              <li>Date Of Birth</li>
+              <li>Favorite Movies List</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Delete</td>
+          <td>http://localhost:8080/members/:id</td>
+          <td>None</td>
+          <td>Message "Member [id] has been deleted." Will Be Returned As Confirmation Of Deletion</td>
+          <td>This Endpoint Will Allow A Member To Delete Their Profile By The ID #</td>
+        </tr>
+      </tbody>
+    </table>
+  </section><!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+  </script>
+</body>
+</html>
