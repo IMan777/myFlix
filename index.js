@@ -1,88 +1,321 @@
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
+const express = require("express");
+const bodyParser = require("body-parser");
+const uuid = require("uuid");
 const port = process.env.port || 8080;
 
-let myMovies = [  /*Object Array Of Favorite Movies*/
-{
-    movieTitle : 'Shawshank Redemption',
-    type : 'Drama',
-    year: '1994'
-},
-{
-    movieTitle : 'Goodfellas',
-    type : 'Crime Biography',
-    year: '1990'
-},
-{
-    movieTitle : 'Malcolm X',
-    type : 'Biography',
-    year: ' 1992'
-},
-{
-    movieTitle : 'Green Mile',
-    type : 'Fantasy Crime',
-    year: '1999'
-},
-{
-    movieTitle : 'The Good, The Bad & The Ugly',
-    type : 'Western',
-    year: '1967'
-},
-{
-    movieTitle : 'Heat',
-    category : 'Crime Thriller',
-    year: '1995'
-},
-{
-    movieTitle : 'Training Day',
-    category : 'Crime Thriller',
-    year: '2001'
-},
-{
-    movieTitle : 'Ray',
-    category : 'Biography Drama',
-    year: '2004'
-},
-{
-    movieTitle : 'The Dark Knight',
-    category : 'Crime Thriller',
-    year: '2008'
-},
-{
-    movieTitle : 'Avengers: Endgame',
-    category : 'Fantasy Sci-Fi',
-    year: '2019'
-},
-]
+const app = express();
 
-app.use(express.static('public')); /*Retrieves Files From Public Folder*/
+app.use(bodyParser.json());
 
 
-app.use(morgan('common'));/*Log Info With Morgon*/
 
-// GET Requests
-app.get('/', function(req, res) {
-  res.send('<h3>Welcome!</h3>' )
+let myMovies = [ /*Object Array Of Movies */
+  {
+    id: 1,
+    title: "Shawshank Redemption",
+    genre: "Drama",
+    year: 1994,
+    imgURL: "",
+    director: {
+      name: "Frank Darabont",
+      birthYear: 1959,
+      deathYear: 0000
+    }
+  },
+  {
+    id: 2,
+    title: "Goodfellas",
+    genre: "Crime Biography",
+    year: 1990,
+    imgURL: "",
+    director: {
+      name: "Martin Scorsese",
+      birthYear: 1942,
+      deathYear: 0000
+    }
+  },
+  {
+    id: 3,
+    title: "Malcolm X",
+    genre: "Biography",
+    year: 1992,
+    imgURL: "",
+    director: {
+      name: "Spike Lee",
+      birthYear: 0,
+      deathYear: 0000
+    }
+  },
+  {
+    id: 4,
+    title: "Green Mile",
+    genre: "Crime",
+    year: 1999,
+    imgURL: "",
+    director: {
+      name: "Frank Darabont",
+      birthYear: 1959,
+      deathYear: 0000
+    }
+  },
+  {
+    id: 5,
+    title: "The Good, The Bad & The Ugly",
+    genre: "Western",
+    year: 1967,
+    imgURL: "",
+    director: {
+      name: "Sergio Leone",
+      birthYear: 1929,
+      deathYear: 1989
+    }
+  },
+  {
+    id: 6,
+    title: "Heat",
+    genre: "Crime Thriller",
+    year: 1995,
+    imgURL: "",
+    director: {
+      name: "Michael Mann",
+      birthYear: 1943,
+      deathYear: 0000
+    }
+  },
+  {
+    id: 7,
+    title: "Training Day",
+    genre: "Crime Thriller",
+    year: 2001,
+    imgURL: "",
+    director: {
+      name: "Antoine Fuqua",
+      birthYear: 1966,
+      deathYear: 0000
+    }
+  },
+  {
+    id: 8,
+    title: "Ray",
+    genre: "Biography Drama",
+    year: 2004,
+    imgURL: "",
+    director: {
+      name: "Taylor Hackford",
+      birthYear: 1944,
+      deathYear: 0000
+    }
+  },
+  {
+    id: 9,
+    title: "The Dark Knight",
+    genre: "Crime Thriller",
+    year: 2008,
+    imgURL: "",
+    director: {
+      name: "Christopher Nolan",
+      birthYear: 1970,
+      deathYear: 0000
+    }
+  },
+  {
+    id: 10,
+    title: "Avengers: Endgame",
+    genre: "Fantasy Sci-Fi",
+    year: 2019,
+    imgURL: "",
+    director: {
+      name: "Joe Russo",
+      birthYear: 1971,
+      deathYear: 0000
+    }
+  }
+];
+
+let myDirectors = [ /*Object Array Directors*/
+  {
+    name: "Frank Darabont",
+    birthYear: 1959,
+    deathYear: 0000
+  },
+  {
+    name: "Martin Scorsese",
+    birthYear: 1942,
+    deathYear: 0000
+  },
+  {
+    name: "Spike Lee",
+    birthYear: 0,
+    deathYear: 0000
+  },
+  {
+    name: "Sergio Leone",
+    birthYear: 1929,
+    deathYear: 1989
+  },
+  {
+    name: "Michael Mann",
+    birthYear: 1943,
+    deathYear: 0000
+  },
+  {
+    name: "Antoine Fuqua",
+    birthYear: 1966,
+    deathYear: 0000
+  },
+  {
+    name: "Taylor Hackford",
+    birthYear: 1944,
+    deathYear: 0000
+  },
+  {
+    name: "Christopher Nolan",
+    birthYear: 1970,
+    deathYear: 0000
+  },
+  {
+    name: "Joe Russo",
+    birthYear: 1971,
+    deathYear: 0000
+  }
+];
+
+let myMembers = [
+  {
+    id: 1,
+    fullName: "John Doe",
+    userName: "JDManX",
+    pswrd: "DJ$#75N",
+    email: "johndoe@yahoo.com",
+    dob: "11/15/1975",
+    favMovies: [2]
+  }
+];
+/*Movie Script Start*/
+
+/*Return List Of All Movies*/
+
+app.get("/movies", (req,res) => {
+  res.json(myMovies);
 });
-app.get('/info', function(req, res) {
-  res.send('<h4>Please Navigate To The Movies Section To View My Top 10 Movies</h4')
+/*Retrieve One Movie From List By Movie Title*/
+
+app.get("/movies/:title", (req, res) => {
+  res.json(
+    myMovies.find(movie => {
+      return movie.title === req.params.title;
+    })
+  );
 });
 
-/* Send Request Function Not Needed Due To Express Static Being Used
-app.get('/documentation', function(req, res) {                  
-  res.sendFile('public/documentation.html', { root : __dirname } )
-}); */
+/*Retrieve Movies From List By Genre*/
 
-app.get('/movies', function(req, res) {
-  res.json(myMovies)
+app.get("/genre/:genre", (req, res) => {
+  res.json(
+    myMovies.find(movie => {
+      return movie.genre === req.params.genre;
+    })
+  );
+});
+/*Retrieve Director Bio By Name*/
+
+app.get("/director/:name", (req, res) => {
+  res.json(
+    myDirectors.find(director => {
+      return director.name === req.params.name;
+    })
+  );
 });
 
+/* Add New Movie To List.*/
+app.post("/movies", (req, res) => {
+  let newMovie = req.body;
 
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).send('Something broke!'); /*Error Checking*/
+  if (!newMovie.title) {
+    const message = "Missing Movie Title";
+    res.status(400).send(message);
+  } else {
+    newMovie.id = uuid.v4();
+    myMovies.push(newMovie);
+    res.status(201).send(newMovie);
+  }
 });
 
+/* Delete A Movie By ID #*/
+app.delete("/movies/:id", (req, res) => {
+  let movie = myMovies.find(movie => {
+    return movie.id === req.params.id;
+  });
 
-app.listen(port);
+  if (movie) {
+    myMovies.filter(function(obj) {
+      return obj.id !== req.params.id;
+    });
+    res.status(201).send("Movie " + req.params.id + " deleted from list.");
+  }
+});
+/*Movie Script End*/
+
+/*Member Script Start*/
+/*Return List Of All Members*/
+
+app.get("/members", (req,res) => {
+  res.json(myMembers);
+});
+/* Add New Member To Site.*/
+app.post("/members", (req, res) => {
+  let newMember = req.body;
+
+  if (!newMember.fullName) {
+    const message = "Missing Full Name / Bad Request";
+    res.status(400).send(message);
+  } else {
+    newMember.id = uuid.v4();
+    myMembers.push(newMember);
+    res.status(201).send(newMember);
+  }
+});
+
+/* Update Member Info.*/
+app.put("/members/:id", (req, res) => {
+  let member = myMembers.find(member => {
+    return member.id === req.params.id;
+  });
+
+  let newMember = req.body;
+
+  if (member && newMember) {
+    newMember.id = member.id;
+    Object.assign(member, newMember);
+
+    myMembers = myMembers.map(member =>
+      member.id === newMember.id ? newMember : member
+    );
+    res.status(201).send(member);
+  } else if (!newMember.fullName) {
+    const message = "Missing Full Name / Bad Request";
+    res.status(400).send(message);
+  } else {
+    res.status(404).send("Member Not Found By Id");
+  }
+});
+
+/* Delete A Member By ID #*/
+app.delete("/members/:id", (req, res) => {
+  let member = myMembers.find(member => {
+    return member.id === req.params.id;
+  });
+
+  if (member) {
+    myMembers.filter(function(obj) {
+      return obj.id !== req.params.id;
+    });
+    res.status(201).send("Member " + req.params.id + " has been deleted.");
+  }
+});
+
+/*Member Script End*/
+
+app.listen(port, () => {
+  console.log("Application Running Successfully");
+});
