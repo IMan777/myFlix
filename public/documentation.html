@@ -5,6 +5,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"><!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    table{font-size:12px; margin:auto}
+    .table-bordered,tr,td{border:3px black solid}
+  </style>
   <title>Documentation</title>
 </head>
 <body>
@@ -14,7 +18,7 @@
     </nav>
   </header>
   <section class="container-fluid">
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-striped table-sm table-responsive-lg">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Method</th>
@@ -35,8 +39,7 @@
           <td>
             <pre>
 <code>
-{
-"id": 2,
+{"id": 2,
 "title": "Goodfellas",
 "genre": "Crime Biography",
 "year": 1990,
@@ -44,9 +47,7 @@
 "director": {
 "name": "Martin Scorsese",
 "birthYear": 1942,
-"deathYear": 0
-}
-}
+"deathYear": 0}}
 </code>
 </pre>
           </td>
@@ -69,8 +70,7 @@
           <td>
             <pre>
 <code>
-{
-"id": 2,
+{"id": 2,
 "title": "Goodfellas",
 "genre": "Crime Biography",
 "year": 1990,
@@ -78,9 +78,7 @@
 "director": {
 "name": "Martin Scorsese",
 "birthYear": 1942,
-"deathYear": 0
-}
-}
+"deathYear": 0}}
 </code>
 </pre>
           </td>
@@ -96,11 +94,9 @@
           <td>
             <pre>
 <code>
-{
-"name": "Frank Darabont",
+{"name": "Frank Darabont",
 "birthYear": 1959,
-"deathYear": 0
-}
+"deathYear": 0}
 </code>
 </pre>
           </td>
@@ -112,35 +108,29 @@
           <td>
             <pre>
 <code>
-{
-"title":"Example Movie Title",
+{"title":"Example Movie Title",
 "genre": "Biography",
 "year": 1999,
 "imgURL": "",
 "director":{
 "name":"Director",
 "birthYear":1945 ,
-"deathYear": 0
-}
-}
+"deathYear": 0}}
 </code>
 </pre>
           </td>
           <td>
             <pre>
 <code>
-{
-"title": "Example Movie Title",
+{"title": "Example Movie Title",
 "genre": "Biography",
 "year": 1999,
 "imgURL": "",
 "director": {
 "name": "Director",
 "birthYear": 1945,
-"deathYear": 0
-},
-"id": "88c80d4b-62e0-42bc-ba4c-c7dbb2f97bfb"
-}
+"deathYear": 0},
+"id": "88c80d4b-62e0-42bc-ba4c-c7dbb2f97bfb"}
 </code>
 </pre>
           </td>
@@ -164,17 +154,13 @@
           <td>
             <pre>
 <code>
-{
-"id": 1,
+{"id": 1,
 "fullName": "John Doe",
 "userName": "JDManX",
 "pswrd": "DJ$#75N",
 "email": "johndoe@yahoo.com",
 "dob": "11/15/1975",
-"favMovies": [
-2
-]
-}
+"favMovies": [2]}
 </code>
 </pre>
           </td>
@@ -186,33 +172,26 @@
           <td>
             <pre>
 <code>
-{
-"id":"",
+{"id":"",
 "fullName": "Ivan Eugene",
 "userName": "IJMan",
 "pswrd": "DQW42&#",
 "email": "ivan@yahoo.com",
 "dob": "9/30/74",
-"favMovie":["5","4"]
-}
+"favMovie":["5","4"]}
 </code>
 </pre>
           </td>
           <td>
             <pre>
 <code>
-{
-"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
+{"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
 "fullName": "Ivan Eugene",
 "userName": "IJMan",
 "pswrd": "DQW42&#",
 "email": "ivan@yahoo.com",
 "dob": "9/30/74",
-"favMovie": [
-"5",
-"4"
-]
-}
+"favMovie": ["5","4"]}
 </code>
 </pre>
           </td>
@@ -222,44 +201,31 @@
           <td>Put</td>
           <td>http://localhost:8080/members/:id</td>
           <td>
-            Made Changes To Username,Password,Email & Favorite Movies List
+
             <pre>
 <code>
-{
-"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
+{"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
 "fullName": "Ivan Eugene",
 "userName": "IJManX87$",
 "pswrd": "DQW42&#820$",
 "email": "ivaneugene@yahoo.com",
 "dob": "9/30/74",
-"favMovie": [
-"5",
-"4",
-"3",
-"9",
-]
-}
+"favMovie": ["5","4","3","9",]}
 </code>
 </pre>
           </td>
           <td>
-            Updates Confirmed
+
             <pre>
 <code>
-{
-"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
+{"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
 "fullName": "Ivan Eugene",
 "userName": "IJManX87$",
 "pswrd": "DQW42&#820$",
 "email": "ivaneugene@yahoo.com",
 "dob": "9/30/74",
 "favMovie": [
-"5",
-"4",
-"3",
-"9"
-]
-}
+"5","4","3","9"]}
 </code>
 </pre>
           </td>
