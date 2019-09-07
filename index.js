@@ -180,7 +180,7 @@ let myDirectors = [ /*Object Array Directors*/
   }
 ];
 
-let myMembers = [
+let myMembers = [ /*Object Array For Members*/
   {
     id: 1,
     fullName: "John Doe",
