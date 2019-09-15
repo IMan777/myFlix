@@ -63,40 +63,28 @@
         <tr>
           <td>Get</td>
           <td>
-            <p>http://localhost:8080/genre/:genre</p>
-            <p>http://localhost:8080/genre/Crime Biography</p>
+            <p>http://localhost:8080/movies/genres/:Title</p>
+            <p>http://localhost:8080/movies/genres/Goodfellas</p>
           </td>
           <td>None</td>
-          <td>
-            <pre>
-<code>
-{"id": 2,
-"title": "Goodfellas",
-"genre": "Crime Biography",
-"year": 1990,
-"imgURL": "",
-"director": {
-"name": "Martin Scorsese",
-"birthYear": 1942,
-"deathYear": 0}}
-</code>
-</pre>
-          </td>
+          <td>Crime : A crime film is a type of film focusing on the lives of criminals.</td>
           <td>This Endpoint Will Retrieve All Movies According To The Genre</td>
         </tr>
         <tr>
           <td>Get</td>
           <td>
-            <p>http://localhost:8080/director/:name</p>
-            <p>http://localhost:8080/director/Frank Darabont</p>
+            <p>http://localhost:8080/movies/director/:name</p>
+            <p>http://localhost:8080/movies/director/Taylor Hackford</p>
           </td>
           <td>None</td>
           <td>
             <pre>
 <code>
-{"name": "Frank Darabont",
-"birthYear": 1959,
-"deathYear": 0}
+{
+"Name": "Taylor Hackford",
+"Bio": "Taylor Edwin Hackford is an American film director and former president of the Directors Guild of America. ",
+"Birth": "1944-01-01T00:00:00.000Z"
+}
 </code>
 </pre>
           </td>
@@ -104,94 +92,75 @@
         </tr>
         <tr>
           <td>Post</td>
-          <td>http://localhost:8080/movies</td>
+          <td>http://localhost:8080/users/:Username/movies/:MovieID</td>
+          <td>None</td>
           <td>
             <pre>
 <code>
-{"title":"Example Movie Title",
-"genre": "Biography",
-"year": 1999,
-"imgURL": "",
-"director":{
-"name":"Director",
-"birthYear":1945 ,
-"deathYear": 0}}
+{
+"FavoriteFilms": [
+    "5d7b78cc133be99d03cc9477",
+    "5d7b09ca8d2c84446b0e13a5"
+],
+"_id": "5d7e81b707f0000e40265378",
+"Username": "PowerBoy5",
+"Password": "1240#$0Lp",
+"Email": "Willpower@yahoo.com",
+"DOB": "1985-06-20T00:00:00.000Z",
+"__v": 0
+}
 </code>
 </pre>
           </td>
-          <td>
-            <pre>
-<code>
-{"title": "Example Movie Title",
-"genre": "Biography",
-"year": 1999,
-"imgURL": "",
-"director": {
-"name": "Director",
-"birthYear": 1945,
-"deathYear": 0},
-"id": "88c80d4b-62e0-42bc-ba4c-c7dbb2f97bfb"}
-</code>
-</pre>
-          </td>
-          <td>This Endpoint Is Used To Add A Movie To The List</td>
+          <td>This Endpoint Is Used To Add A Movie To The User's Favorite List</td>
         </tr>
         <tr>
           <td>Delete</td>
-          <td>http://localhost:8080/movies/:id</td>
+          <td>http://localhost:8080/user/:Username/movies/:MovieID</td>
           <td>None</td>
           <td>
-            <p>"Movie [id#] deleted from list." Will Be Returned As Confirmation Of Deletion</p>
+            <p>Movie Under ID # [MovieId] Has Been Deleted From Member's Account.</p>
           </td>
           <td>
-            <p>This Endpoint Will Delete A Movie From The List By Id. Message</p>
+            <p>This Endpoint Will Delete A Movie From User's Favorite Movie List </p>
           </td>
         </tr>
         <tr>
           <td>Get</td>
-          <td>http://localhost:8080/members</td>
+          <td>http://localhost:8080/users</td>
           <td>None</td>
-          <td>
-            <pre>
-<code>
-{"id": 1,
-"fullName": "John Doe",
-"userName": "JDManX",
-"pswrd": "DJ$#75N",
-"email": "johndoe@yahoo.com",
-"dob": "11/15/1975",
-"favMovies": [2]}
-</code>
-</pre>
-          </td>
+          <td>A List Of All Members Will Be Displayed In JSON Format</td>
           <td>This Endpoint Will Display A List Of All The Members And Info</td>
         </tr>
         <tr>
           <td>Post</td>
-          <td>http://localhost:8080/members</td>
+          <td>http://localhost:8080/users</td>
           <td>
             <pre>
 <code>
-{"id":"",
-"fullName": "Ivan Eugene",
-"userName": "IJMan",
-"pswrd": "DQW42&#",
-"email": "ivan@yahoo.com",
-"dob": "9/30/74",
-"favMovie":["5","4"]}
+{
+"FavoriteFilms": [],
+"_id": "",
+"Username": "PowerBoy5",
+"Password": "1240#$0LK",
+"Email": "Willposer@yahoo.com",
+"DOB": "1985-06-20"
+}
 </code>
 </pre>
           </td>
           <td>
             <pre>
 <code>
-{"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
-"fullName": "Ivan Eugene",
-"userName": "IJMan",
-"pswrd": "DQW42&#",
-"email": "ivan@yahoo.com",
-"dob": "9/30/74",
-"favMovie": ["5","4"]}
+{
+"FavoriteFilms": [],
+"_id": "5d7e81b707f0000e40265378",
+"Username": "PowerBoy5",
+"Password": "1240#$0LK",
+"Email": "Willposer@yahoo.com",
+"DOB": "1985-06-20T00:00:00.000Z",
+"__v": 0
+}
 </code>
 </pre>
           </td>
@@ -199,18 +168,20 @@
         </tr>
         <tr>
           <td>Put</td>
-          <td>http://localhost:8080/members/:id</td>
+          <td>http://localhost:8080/users/:Username</td>
           <td>
 
             <pre>
 <code>
-{"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
-"fullName": "Ivan Eugene",
-"userName": "IJManX87$",
-"pswrd": "DQW42&#820$",
-"email": "ivaneugene@yahoo.com",
-"dob": "9/30/74",
-"favMovie": ["5","4","3","9",]}
+{
+"FavoriteFilms": [],
+"_id": "5d7e81b707f0000e40265378",
+"Username": "PowerBoy5",
+"Password": "1240#$0Lp",
+"Email": "Willpower@yahoo.com",
+"DOB": "1985-06-20T00:00:00.000Z",
+"__v": 0
+}
 </code>
 </pre>
           </td>
@@ -218,14 +189,15 @@
 
             <pre>
 <code>
-{"id": "edbbb4b5-4cbb-4ddc-90dc-df3ca2a801bf",
-"fullName": "Ivan Eugene",
-"userName": "IJManX87$",
-"pswrd": "DQW42&#820$",
-"email": "ivaneugene@yahoo.com",
-"dob": "9/30/74",
-"favMovie": [
-"5","4","3","9"]}
+{
+"FavoriteFilms": [],
+"_id": "5d7e81b707f0000e40265378",
+"Username": "PowerBoy5",
+"Password": "1240#$0Lp",
+"Email": "Willpower@yahoo.com",
+"DOB": "1985-06-20T00:00:00.000Z",
+"__v": 0
+}
 </code>
 </pre>
           </td>
@@ -233,21 +205,24 @@
             <p>This Endpoint Will Allow A Member To Update Their Info:</p>
             <p></p>
             <ul>
-              <li>Full Name</li>
+              
               <li>Username</li>
               <li>Password</li>
               <li>Email</li>
               <li>Date Of Birth</li>
-              <li>Favorite Movies List</li>
+             
             </ul>
           </td>
         </tr>
         <tr>
           <td>Delete</td>
-          <td>http://localhost:8080/members/:id</td>
+          <td>
+            <p>http://localhost:8080/users/:Username</p>
+            <p>http://localhost:8080/users/PowerBoy5</p>
+         </td>
           <td>None</td>
-          <td>Message "Member [id] has been deleted." Will Be Returned As Confirmation Of Deletion</td>
-          <td>This Endpoint Will Allow A Member To Delete Their Profile By The ID #</td>
+          <td>PowerBoy5 User Account Has Been Deleted.</td>
+          <td>This Endpoint Will Allow A Member To Delete Their Profile By Their Username</td>
         </tr>
       </tbody>
     </table>
