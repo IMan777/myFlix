@@ -1,21 +1,45 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const port = process.env.port || 8080;
 const mongoose = require('mongoose');
-
-const app = express();
+const passport = require('passport');
 const Models = require('./models.js');
+const cors = require('cors');
+
+const port = process.env.port || 3000;
 
 const Movies = Models.Movie;
 const Users =  Models.User;
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {userNewUrlParser: true});
+require('./passport');
+
+const app = express();
+
+
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { useUnifiedTopology: true }); /*Replaces { useNewUrl
+Parser: true } Due Deprecation Warning From GIT Bash Terminal*/
 
 app.use(bodyParser.json());
 
+var auth = require('./auth')(app);
+
+var allowedOrigins = ['http://localhost:8080'];
+
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ 
+      var message = 'The CORS Policy For This App Does Not Permit Access From This Domain ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
+
+
+
 /*Movie Script Start*/
 
-app.get('/movies',function(req , res){
+app.get('/movies', passport.authenticate('jwt',{ session:false}),function(req , res){ /*JWT Authenticaton Inserted At Endpoints*/
     
     Movies.find()
      .then(function(movies){
@@ -27,7 +51,7 @@ app.get('/movies',function(req , res){
     }); 
 });
 
-app.get('/movies/:Title',function(req , res){
+app.get('/movies/:Title', passport.authenticate('jwt',{ session:false}), function(req , res){
     
     Movies.find({Title : req.params.Title})
      .then(function(movies){
@@ -39,7 +63,7 @@ app.get('/movies/:Title',function(req , res){
     }); 
 });
 
-app.get('/movies/director/:Name',function(req , res){
+app.get('/movies/director/:Name',passport.authenticate('jwt',{ session:false}),function(req , res){
     
     Movies.findOne({"Director.Name" : req.params.Name})
      .then(function(movies){
@@ -51,7 +75,7 @@ app.get('/movies/director/:Name',function(req , res){
     }); 
 });
 
-app.get('/movies/genres/:Title',function(req , res){
+app.get('/movies/genres/:Title',passport.authenticate('jwt',{ session:false}),function(req , res){
     
     Movies.findOne({Title : req.params.Title})
      .then(function(movie){
@@ -67,7 +91,24 @@ app.get('/movies/genres/:Title',function(req , res){
 
 /*User Script Start*/
 
-app.post('/users', function(req, res) {
+app.post('/users', [
+
+   check('Username','Username Required').isLength({min:5}),
+   check('Username','Maximum Length For Username Is 15 Characters').isLength({max:5}),
+   check('Username','Username Must Contain Alphanumeric Chracters').isAlphanumeric(),
+   check('Password','Password Required').not().isEmpty(),
+   check('Email','Valid Email Required').isEmail()
+
+] , function(req, res) {
+  
+ var errors = validationResult(req);
+ 
+ if (!errors.isEmpty()){
+  return res.status(422).json({ errors: errors.array()});
+
+}
+
+ var hashedPassword = Users.hashPassword(req.body.Password);    
   Users.findOne({ Username : req.body.Username })
   .then(function(user) {
     if (user) {
@@ -92,7 +133,7 @@ app.post('/users', function(req, res) {
   });
 });
 
-app.get('/users',function(req , res){
+app.get('/users',passport.authenticate('jwt',{ session:false}),function(req , res){
     
     Users.find()
      .then(function(users){
@@ -104,7 +145,7 @@ app.get('/users',function(req , res){
     }); 
 });
 
-app.put('/users/:Username', function(req, res) {
+app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), function(req, res) {
   Users.findOneAndUpdate({ Username : req.params.Username }, { $set : /*Allows User To Update Their Info*/
   {
     Username : req.body.Username,
@@ -124,7 +165,7 @@ app.put('/users/:Username', function(req, res) {
   })
 });
 
-app.post('/users/:Username/movies/:MovieID', function(req, res) {  /*Allows User To Add A New Favorite Movie*/
+app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt',{ session:false}), function(req, res) {  /*Allows User To Add A New Favorite Movie*/
   Users.findOneAndUpdate({ Username : req.params.Username }, {
     $push : { FavoriteFilms : req.params.MovieID }
   },
@@ -139,7 +180,7 @@ app.post('/users/:Username/movies/:MovieID', function(req, res) {  /*Allows User
   })
 });
 
-app.delete('/users/:Username/movies/:MovieID', function(req, res) {  /*Allows User To Delete A Favorite Movie*/
+app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt',{ session:false}), function(req, res) {  /*Allows User To Delete A Favorite Movie*/
   Users.findOneAndUpdate({ Username : req.params.Username }, {
     $pull : { FavoriteFilms : req.params.MovieID }
   },
@@ -156,7 +197,7 @@ app.delete('/users/:Username/movies/:MovieID', function(req, res) {  /*Allows Us
 
 
 
-app.delete('/users/:Username', function(req, res) {
+app.delete('/users/:Username', passport.authenticate('jwt',{ session:false}), function(req, res) {
   Users.findOneAndRemove({ Username: req.params.Username })
   .then(function(user) {
     if (!user) {
@@ -175,6 +216,8 @@ app.delete('/users/:Username', function(req, res) {
 
 
 
-app.listen(port, () => {
-  console.log("Application Running Successfully");
+app.listen(port, "0.0.0.0", () => {
+  console.log("Application Running Successfully & Listening On Port 3000");
 });
+
+
