@@ -14,6 +14,8 @@ require('./passport');
 
 const app = express();
 
+const { check, validationResult } = require('express-validator');
+
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { useUnifiedTopology: true }); /*Replaces { useNewUrl
 Parser: true } Due Deprecation Warning From GIT Bash Terminal*/
