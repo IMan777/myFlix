@@ -221,7 +221,7 @@ app.delete('/users/:Username', passport.authenticate('jwt',{ session:false}), fu
 
 
 app.listen(port, "0.0.0.0", () => {
-  console.log("Application Running Successfully & Listening On Port 3000");
+  console.log("Application Running Successfully & Listening On Port 5000");
 });
 
 
