@@ -1,7 +1,7 @@
 {
   "name": "movie_api",
   "version": "1.0.0",
-  "description": "",
+  "description": "This app allows users to select favorite movies",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -37,6 +37,11 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "eslint": "^6.3.0"
-  }
+    "eslint": "^6.4.0"
+  },
+    "engines": {
+     "node": "10.16.3",
+     "npm": "6.9.0"
+}
+
 }
