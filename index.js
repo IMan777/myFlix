@@ -5,7 +5,7 @@ const passport = require('passport');
 const Models = require('./models.js');
 const cors = require('cors');
 
-const port = process.env.port || 3000;
+const port = process.env.port || 5000;
 
 const Movies = Models.Movie;
 const Users =  Models.User;
