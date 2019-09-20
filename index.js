@@ -5,7 +5,7 @@ const passport = require('passport');
 const Models = require('./models.js');
 const cors = require('cors');
 
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 
 const Movies = Models.Movie;
 const Users =  Models.User;
@@ -39,6 +39,11 @@ app.use(cors({
   }
 })); */
 
+app.get('/',(req,res) =>{
+
+res.send('Welcome To My Flix App!');
+
+});
 
 
 /*Movie Script Start*/
