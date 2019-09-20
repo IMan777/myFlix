@@ -17,8 +17,10 @@ const app = express();
 const { check, validationResult } = require('express-validator');
 
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useUnifiedTopology: true }); /*Replaces { useNewUrl
+/* mongoose.connect('mongodb://localhost:27017/myFlixDB', { useUnifiedTopology: true }); Replaces { useNewUrl
 Parser: true } Due Deprecation Warning From GIT Bash Terminal*/
+
+mongoose.connect('mongodb+srv://myFlixDBadmin:75RT62@mycluster-dxwcr.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 
