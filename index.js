@@ -48,7 +48,7 @@ res.send('Welcome To My Flix App!');
 
 /*Movie Script Start*/
 
-app.get('/movies', passport.authenticate('jwt',{ session:false}),function(req , res){ /*JWT Authenticaton Inserted At Endpoints*/
+app.get('/movies', function(req , res){ 
     
     Movies.find()
      .then(function(movies){
@@ -60,7 +60,7 @@ app.get('/movies', passport.authenticate('jwt',{ session:false}),function(req , 
     }); 
 });
 
-app.get('/movies/:Title', passport.authenticate('jwt',{ session:false}), function(req , res){
+app.get('/movies/:Title',  function(req , res){
     
     Movies.find({Title : req.params.Title})
      .then(function(movies){
@@ -72,7 +72,7 @@ app.get('/movies/:Title', passport.authenticate('jwt',{ session:false}), functio
     }); 
 });
 
-app.get('/movies/director/:Name',passport.authenticate('jwt',{ session:false}),function(req , res){
+app.get('/movies/director/:Name',function(req , res){
     
     Movies.findOne({"Director.Name" : req.params.Name})
      .then(function(movies){
@@ -84,7 +84,7 @@ app.get('/movies/director/:Name',passport.authenticate('jwt',{ session:false}),f
     }); 
 });
 
-app.get('/movies/genres/:Title',passport.authenticate('jwt',{ session:false}),function(req , res){
+app.get('/movies/genres/:Title', function(req , res){
     
     Movies.findOne({Title : req.params.Title})
      .then(function(movie){
