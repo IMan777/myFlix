@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 var auth = require('./auth')(app);
 
-/*var allowedOrigins = ['http://localhost:8080'];
+var allowedOrigins = ['http://localhost:5000','https://my-flix-10.herokuapp.com/','https://my-flix-10.herokuapp.com/movies','https://my-flix-10.herokuapp.com/users','https://my-flix-10.herokuapp.com/movies/:Title','https://my-flix-10.herokuapp.com/movies/director/:Name','https://my-flix-10.herokuapp.com/movies/genres/:Title'];
 
 app.use(cors({
   origin: function(origin, callback){
@@ -37,7 +37,7 @@ app.use(cors({
     }
     return callback(null, true);
   }
-})); */
+})); 
 
 app.get('/',(req,res) =>{
 
