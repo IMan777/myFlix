@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 var auth = require('./auth')(app);
 
-var allowedOrigins = ['http://localhost:5000','https://my-flix-10.herokuapp.com/','https://my-flix-10.herokuapp.com/movies','https://my-flix-10.herokuapp.com/users','https://my-flix-10.herokuapp.com/movies/:Title','https://my-flix-10.herokuapp.com/movies/director/:Name','https://my-flix-10.herokuapp.com/movies/genres/:Title'];
+var allowedOrigins = ['http://localhost:5000','https://my-flix-10.herokuapp.com/','https://my-flix-10.herokuapp.com/movies','https://my-flix-10.herokuapp.com/users','https://my-flix-10.herokuapp.com/movies/:Title','https://my-flix-10.herokuapp.com/movies/director/:Name','https://my-flix-10.herokuapp.com/movies/genres/:Title','https://my-flix-10.herokuapp.com/users/:Username','https://my-flix-10.herokuapp.com/login'];
 
 app.use(cors({
   origin: function(origin, callback){
@@ -102,8 +102,8 @@ app.get('/movies/genres/:Title',passport.authenticate('jwt',{ session:false}),fu
 
 app.post('/users', [
 
-   check('Username','Username Required').isLength({min:5}),
-   check('Username','Maximum Length For Username Is 15 Characters').isLength({max:5}),
+   check('Username','Minimum Length For Username Is 5 Characters').isLength({min:5}),
+   check('Username','Maximum Length For Username Is 15 Characters').isLength({max:15}),
    check('Username','Username Must Contain Alphanumeric Chracters').isAlphanumeric(),
    check('Password','Password Required').not().isEmpty(),
    check('Email','Valid Email Required').isEmail()
