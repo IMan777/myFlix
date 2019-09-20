@@ -113,7 +113,7 @@ app.post('/users', [
  var errors = validationResult(req);
  
  if (!errors.isEmpty()){
-  return res.status(422).json({ errors: errors.array()});
+  return res.status(422).json({ errors: errors.array() });
 
 }
 
@@ -121,7 +121,7 @@ app.post('/users', [
   Users.findOne({ Username : req.body.Username })
   .then(function(user) {
     if (user) {
-      return res.status(400).send("Member Under Username "+req.body.Username + " Is Already Registered");
+      return res.status(400).send("Member Under Username " + req.body.Username + " Is Already Registered");
     } else {
       Users
       .create({
