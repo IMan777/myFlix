@@ -48,7 +48,7 @@ res.send('Welcome To My Flix App!');
 
 /*Movie Script Start*/
 
-app.get('/movies', /*passport.authenticate('jwt',{ session:false})*/,function(req , res){ /*JWT Authenticaton Inserted At Endpoints*/
+app.get('/movies', passport.authenticate('jwt',{ session:false}),function(req , res){ /*JWT Authenticaton Inserted At Endpoints*/
     
     Movies.find()
      .then(function(movies){
