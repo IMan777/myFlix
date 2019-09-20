@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 var auth = require('./auth')(app);
 
-var allowedOrigins = ['http://localhost:8080'];
+/*var allowedOrigins = ['http://localhost:8080'];
 
 app.use(cors({
   origin: function(origin, callback){
@@ -37,7 +37,7 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}));
+})); */
 
 
 
