@@ -32,7 +32,7 @@ passport.use(new LocalStrategy({   /*Password & Username Validation*/
 }));
 
 passport.use(new JWTStrategy({
- jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+ jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), /*JWT Token Provided*/
  secretOrKey: 'your_jwt_secret'
 }, (jwtPayload, callback) => {
  return Users.findById(jwtPayload._id)
