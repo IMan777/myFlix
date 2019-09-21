@@ -25,6 +25,8 @@ mongoose.connect('mongodb+srv://myFlixDBadmin:75RT62@mycluster-dxwcr.mongodb.net
 
 app.use(bodyParser.json());
 
+
+
 var auth = require('./auth')(app);
 
 var allowedOrigins = ['http://localhost:5000','https://my-flix-10.herokuapp.com/','https://my-flix-10.herokuapp.com/movies','https://my-flix-10.herokuapp.com/users','https://my-flix-10.herokuapp.com/movies/:Title','https://my-flix-10.herokuapp.com/movies/director/:Name','https://my-flix-10.herokuapp.com/movies/genres/:Title','https://my-flix-10.herokuapp.com/users/:Username','https://my-flix-10.herokuapp.com/login'];
@@ -103,13 +105,12 @@ app.get('/movies/genres/:Title', function(req , res){
 
 app.post('/users', [
 
-   check('Username','Minimum Length For Username Is 5 Characters').isLength({min:5}),
-   check('Username','Maximum Length For Username Is 15 Characters').isLength({max:15}),
+   check('Username','Username Is Required').isLength({min: 5}),
    check('Username','Username Must Contain Alphanumeric Chracters').isAlphanumeric(),
    check('Password','Password Required').not().isEmpty(),
    check('Email','Valid Email Required').isEmail()
 
-] , function(req, res) {
+] , (req, res) => {
   
  var errors = validationResult(req);
  
@@ -200,7 +201,7 @@ app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt',{ ses
       console.error(error);
       res.status(500).send("Error: " + error);
     } else {
-      res.status(201).send("Movie Under ID # "+ req.params.MovieID + " Has Been Deleted From Member's Account.");
+      res.status(201).send("Movie Under ID # " + req.params.MovieID + " Has Been Deleted From Member's Account.");
     }
   })
 });
