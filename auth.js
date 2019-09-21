@@ -5,7 +5,7 @@ require('./passport');
 
 
 function generateJWTToken(user) { 
-    return jwt.sign(user, jwtSecret, {
+    return jwt.sign(user, jwtSecret, {  /*JWT Token Generated*/
         subject: user.Username,
         expiresIn: '7d',
         algorithm: 'HS256'
@@ -14,7 +14,7 @@ function generateJWTToken(user) {
 
 module.exports = (router) => {
  router.post('/login', (req, res) => {
-   passport.authenticate('local', { session : false}, (error, user, info) => {
+   passport.authenticate('local', { session : false}, (error, user, info) => { /*Verifies Correct Username & Password Is Entered*/
      if (error || !user) {
        return res.status(400).json({
          message: 'Something is not right',
