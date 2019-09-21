@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");  /*Declarations*/
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Models = require('./models.js');
@@ -21,13 +21,15 @@ const { check, validationResult } = require('express-validator');
 /* mongoose.connect('mongodb://localhost:27017/myFlixDB', { useUnifiedTopology: true }); Replaces { useNewUrl
 Parser: true } Due Deprecation Warning From GIT Bash Terminal*/
 
-mongoose.connect('mongodb+srv://myFlixDBadmin:75RT62@mycluster-dxwcr.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://myFlixDBadmin:75RT62@mycluster-dxwcr.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useUnifiedTopology: true }); /*Connection With MongoDB Atlas Database Established*/
 
 app.use(bodyParser.json());
 
 
 
 var auth = require('./auth')(app);
+
+/*Cors Script To Allow Only Certain URLs Access*/
 
 var allowedOrigins = ['http://localhost:5000','https://my-flix-10.herokuapp.com/','https://my-flix-10.herokuapp.com/movies','https://my-flix-10.herokuapp.com/users','https://my-flix-10.herokuapp.com/movies/:Title','https://my-flix-10.herokuapp.com/movies/director/:Name','https://my-flix-10.herokuapp.com/movies/genres/:Title','https://my-flix-10.herokuapp.com/users/:Username','https://my-flix-10.herokuapp.com/login'];
 
@@ -44,7 +46,7 @@ app.use(cors({
 
 app.get('/',(req,res) =>{
 
-res.send('Welcome To My Flix App!');
+res.send('Welcome To My Flix App!'); /*Default Greeting*/
 
 });
 
@@ -106,7 +108,7 @@ app.get('/movies/genres/:Title', function(req , res){
 app.post('/users', [
 
    check('Username','Username Is Required').isLength({min: 5}),
-   check('Username','Username Must Contain Alphanumeric Chracters').isAlphanumeric(),
+   check('Username','Username Must Contain Alphanumeric Chracters').isAlphanumeric(),  /*Verifies Correct Info Is Entered*/
    check('Password','Password Required').not().isEmpty(),
    check('Email','Valid Email Required').isEmail()
 
@@ -123,7 +125,7 @@ app.post('/users', [
   Users.findOne({ Username : req.body.Username })
   .then(function(user) {
     if (user) {
-      return res.status(400).send("Member Under Username " + req.body.Username + " Is Already Registered");
+      return res.status(400).send("Member Under Username " + req.body.Username + " Is Already Registered");  /*Adds New User*/
     } else {
       Users
       .create({
@@ -132,7 +134,7 @@ app.post('/users', [
         Email: req.body.Email,
         DOB: req.body.DOB
       })
-      .then(function(user) {res.status(201).json(user) }) /*Adds New User*/
+      .then(function(user) {res.status(201).json(user) }) 
       .catch(function(error) {
         console.error(error);
         res.status(500).send("Error: " + error);
