@@ -10,7 +10,7 @@ var ExtractJWT = passportJWT.ExtractJwt;
 
 passport.use(new LocalStrategy({   /*Password & Username Validation*/
   usernameField: 'Username',
-  passwordField: 'Password',
+  passwordField: 'Password'
 }, (username, password, callback) => {
   console.log(username + '  ' + password);
   Users.findOne({ Username: username }, (error, user) => {
