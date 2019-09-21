@@ -5,6 +5,7 @@ const passport = require('passport');
 const Models = require('./models.js');
 const cors = require('cors');
 
+
 const port = process.env.PORT || 5000;
 
 const Movies = Models.Movie;
@@ -142,7 +143,7 @@ app.post('/users', [
   });
 });
 
-app.get('/users',passport.authenticate('jwt',{ session:false}),function(req , res){
+app.get('/users', passport.authenticate('jwt',{ session:false}),function(req , res){
     
     Users.find()
      .then(function(users){
@@ -226,7 +227,7 @@ app.delete('/users/:Username', passport.authenticate('jwt',{ session:false}), fu
 
 
 app.listen(port, "0.0.0.0", () => {
-  console.log("Application Running Successfully & Listening On Port 5000");
+  console.log("Application Running Successfully!");
 });
 
 
