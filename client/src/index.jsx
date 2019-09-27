@@ -8,11 +8,8 @@ import './index.scss'; //Imports SCSS File
 class MyFlixApplication extends React.Component{ //Will Be Displayed In HTML Page
     render(){
         return <MainView/>;
-      
-    }
- 
-
-}
+      }
+ }
 
 const container = document.getElementsByClassName('app-container')[0];
 
