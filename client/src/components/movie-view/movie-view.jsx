@@ -1,19 +1,24 @@
 import React from 'react';
 import { MainView } from '../main-view/main-view';
 
+
 export class MovieView extends React.Component {
 
   constructor() {
     super();
-
+    
     this.state = {};
   }
-
+  navigate(){
+    window.open(<MainView/> ) ; /*Function Created In Order To Return To Main View*/ 
+    
+  }
+  
   render() {
-    const { movie } = this.props;
+    const { movie  } = this.props;
 
     if (!movie) return null;
-
+    /*Displays Selected Movie Attributes */
     return (
        <div className="movie-view">
         <div className="movie-title">
@@ -24,7 +29,7 @@ export class MovieView extends React.Component {
           <div className="label">Description</div>
           <div className="value">{movie.Description}</div>
         </div>
-        <img className="movie-poster" src={movie.ImagePath} />
+         <img className="movie-poster" src={movie.ImagePath} />  
         <div className="movie-genre">
           <div className="label">Genre</div>
           <div className="value">{movie.Genre.Name}</div>
@@ -33,12 +38,16 @@ export class MovieView extends React.Component {
           <div className="label">Director</div>
           <div className="value">{movie.Director.Name}</div>
         </div>
-        
+        <br></br>
+        <button onClick={this.navigate }>Movie List</button> 
        </div>
-        
+       
 
     );
     
   }
-  
+ 
 }
+
+
+
