@@ -19,7 +19,7 @@ export class MainView extends React.Component {
 
  
   componentDidMount() {
-    axios.get('https://my-flix-10.herokuapp.com/movies')
+    axios.get('https://my-flix-10.herokuapp.com/movies') /*Endpoint To Access Movie List From DataBase  */
       .then(response => {
         
         this.setState({
