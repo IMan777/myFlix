@@ -1,0 +1,12 @@
+$blackColor:black;
+$grayColor:gray;
+
+.movie-poster{
+    border: 2px solid $blackColor;
+    box-shadow: 2px 2px $blackColor;
+}
+.view-movie{
+    border:2px solid $grayColor;
+    margin:15px;
+    border-radius: 3px;
+}
