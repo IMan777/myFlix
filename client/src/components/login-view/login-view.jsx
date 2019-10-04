@@ -13,10 +13,10 @@ export function LoginView(props) {
   const [ username, enterUsername ] = useState(' ');
   const [ password, enterPassword ] = useState(' ');
 
- const handleSubmit = (e) => {
+ /*const handleSubmit = (e) => {
     e.preventDefault();
     
-    axios.post('https://my-flix-10.herokuapp.com/login', {
+    axios.post('http://localhost:5000/login', {
       Username: username,
       Password: password
     })
@@ -27,13 +27,13 @@ export function LoginView(props) {
     .catch(e => {
       console.log('no such user')
     });
-  }; 
+  }; */
 
-  /*const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
     props.onLoggedIn(username)
-  };*/
+  };
   
 
 
@@ -65,11 +65,11 @@ export function LoginView(props) {
 
 
 
-LoginView.propTypes ={
+/*LoginView.propTypes ={
     username: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     newUser: PropTypes.func.isRequired,
     onLoggedIn: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired
  
- };
+ };*/
