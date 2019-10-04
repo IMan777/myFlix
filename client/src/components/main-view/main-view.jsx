@@ -42,13 +42,13 @@ export class MainView extends React.Component {
     });
   }
 
- /* onLoggedIn(user) {
+ onLoggedIn(user) {
     this.setState({
       user
     });
-  }*/
+  }
 
-  onLoggedIn(authData) {
+  /*onLoggedIn(authData) {
     console.log(authData);
     this.setState({
       user: authData.user.Username
@@ -71,7 +71,7 @@ export class MainView extends React.Component {
     .catch(function (error) {
       console.log(error);
     });
-  }
+  }*/
 
   newRegistration() {
     /*Function To Register A New Member*/
@@ -82,7 +82,7 @@ export class MainView extends React.Component {
 
   newMember() {
     this.setState({
-      /*New Member Established*/
+      
       newUser: null
     });
   }
@@ -95,35 +95,37 @@ export class MainView extends React.Component {
       newUser
     } = this.state;
 
-    if (!user) {
-      if (newUser) return React.createElement(RegistrationView, {
-        newMember: () => this.newMember(),
-        onLoggedIn: user => this.onLoggedIn(user)
-      });else return React.createElement(LoginView, {
-        onLoggedIn: user => this.onLoggedIn(user),
-        newUser: () => this.newRegistration(),
-        newMember: () => this.newMember()
-      });
-    }
+    if(!user){
 
-    if (!user) return React.createElement(LoginView, {
-      onLoggedIn: user => this.onLoggedIn(user)
-    });
-    if (!movies) return React.createElement("div", {
-      className: "main-view"
-    });
-    return React.createElement("div", {
-      className: "main-view"
-    }, React.createElement(Container, {
-      className: "mainContain"
-    }, React.createElement(Row, null, selectedMovie ? React.createElement(MovieView, {
-      movie: selectedMovie,
-      onClick: () => this.clickButton()
-    }) : movies.map(movie => React.createElement(Col, null, React.createElement(MovieCard, {
-      key: movie._id,
-      movie: movie,
-      onClick: movie => this.onMovieClick(movie)
-    }))))));
-  }
-
-}
+      if(newUser) return <RegistrationView newMember={ () => this.newMember()} onLoggedIn={user => this.onLoggedIn(user)}/>;
+      
+      else return <LoginView onLoggedIn = {user => this.onLoggedIn(user)} newUser = {() => this.newRegistration()} newMember={() =>this.newMember()}/>;
+      
+      }
+      
+      
+      
+      
+        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;  
+          
+          if (!movies) return <div className="main-view"/>;
+      
+          return (
+            <div className="main-view">
+             <Container>
+                 <Row>
+             {selectedMovie
+                ? <MovieView movie={selectedMovie} onClick={() => this.clickButton()}/>
+                : movies.map(movie => (
+                  <Col>
+                  <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
+                  </Col>
+                 ))
+             }
+                </Row>
+            
+             </Container>
+            </div>
+           );
+         }
+        }
