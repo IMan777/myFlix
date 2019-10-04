@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -12,13 +13,28 @@ export function LoginView(props) {
   const [ username, enterUsername ] = useState(' ');
   const [ password, enterPassword ] = useState(' ');
 
-  
-  const handleSubmit = (e) => {
-e.preventDefault();
-props.onLoggedIn(username);
-console.log(username, password);
-};
+ const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    axios.post('https://my-flix-10.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    })
+    .then(response => {
+      const data = response.data;
+      props.onLoggedIn(data);
+    })
+    .catch(e => {
+      console.log('no such user')
+    });
+  }; 
 
+  /*const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(username, password);
+    props.onLoggedIn(username)
+  };*/
+  
 
 
   
