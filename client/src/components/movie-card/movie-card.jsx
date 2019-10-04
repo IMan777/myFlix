@@ -4,32 +4,33 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './movie-card.scss';
 import Container from 'react-bootstrap/Container';
+
 export class MovieCard extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+  
 
   render() {
     const {
       movie,
       onClick
     } = this.props;
-    return React.createElement(Container, null, React.createElement(Card, {
-      style: {
-        width: '14rem'
-      },
-      className: "movie-card"
-    }, React.createElement(Card.Img, {
-      variant: "top",
-      src: movie.ImagePath
-    }), React.createElement(Card.Body, null, React.createElement(Card.Title, null, movie.Title), React.createElement(Card.Text, null, movie.Description), React.createElement(Button, {
-      onClick: () => onClick(movie),
-      variant: "dark"
-    }, "Open"))));
-  }
+    
 
-}
+    return (
+        <Container>
+        <Card style={{ width: '16rem' }}>
+          <Card.Img variant="top" src={movie.ImagePath} />
+          <Card.Body>
+            <Card.Title>{movie.Title}</Card.Title>
+            <Card.Text>{movie.Description}</Card.Text>
+            <Button onClick={() => onClick(movie)} variant="link">Open</Button>
+          </Card.Body>
+        </Card>
+        </Container>
+      );
+    }
+  }
+    
+
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
