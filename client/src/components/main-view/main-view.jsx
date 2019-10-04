@@ -20,7 +20,7 @@ export class MainView extends React.Component {
 
   componentDidMount() {
     axios.get('https://my-flix-10.herokuapp.com/movies')
-    /*Endpoint To Access Movie List From DataBase/API  */
+    
     .then(response => {
       this.setState({
         movies: response.data
@@ -74,7 +74,7 @@ export class MainView extends React.Component {
   }*/
 
   newRegistration() {
-    /*Function To Register A New Member*/
+   
     this.setState({
       newUser: true
     });
