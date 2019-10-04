@@ -23,7 +23,7 @@ export class MovieView extends React.Component {
     <div className="movie-view">
 
 <Card.Img variant="top" className="movie-poster" src={movie.ImagePath} />  
-        <Card.Body>
+        <Card.Body style={{ width: '14rem' }}>
           <Card.Title className="label">Title</Card.Title>
           <Card.Text className="value">{movie.Title}</Card.Text>
         
