@@ -17,12 +17,12 @@ export class MovieCard extends React.Component {
 
     return (
         <Container>
-        <Card style={{ width: '16rem' }}>
+        <Card style={{ width: '16rem' }} className="movie-card">
           <Card.Img variant="top" src={movie.ImagePath} />
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
             <Card.Text>{movie.Description}</Card.Text>
-            <Button onClick={() => onClick(movie)} variant="link">Open</Button>
+            <Button onClick={() => onClick(movie)} variant="dark">Open</Button>
           </Card.Body>
         </Card>
         </Container>
