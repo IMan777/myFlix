@@ -31,7 +31,7 @@ var auth = require('./auth')(app);
 
 /*Cors Script To Allow Only Certain URLs Access*/
 
-var allowedOrigins = ['http://localhost:5000','https://my-flix-10.herokuapp.com/','https://my-flix-10.herokuapp.com/movies','https://my-flix-10.herokuapp.com/users','https://my-flix-10.herokuapp.com/movies/:Title','https://my-flix-10.herokuapp.com/movies/director/:Name','https://my-flix-10.herokuapp.com/movies/genres/:Title','https://my-flix-10.herokuapp.com/users/:Username','https://my-flix-10.herokuapp.com/login'];
+/*var allowedOrigins = ['http://localhost:5000','https://my-flix-10.herokuapp.com/','https://my-flix-10.herokuapp.com/movies','https://my-flix-10.herokuapp.com/users','https://my-flix-10.herokuapp.com/movies/:Title','https://my-flix-10.herokuapp.com/movies/director/:Name','https://my-flix-10.herokuapp.com/movies/genres/:Title','https://my-flix-10.herokuapp.com/users/:Username','https://my-flix-10.herokuapp.com/login'];
 
 app.use(cors({
   origin: function(origin, callback){
@@ -42,7 +42,7 @@ app.use(cors({
     }
     return callback(null, true);
   }
-})); 
+})); */
 
 app.get('/',(req,res) =>{
 
