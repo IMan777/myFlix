@@ -53,7 +53,7 @@ res.send('Welcome To My Flix App!'); /*Default Greeting*/
 
 /*Movie Script Start*/
 
-app.get('/movies',passport.authenticate('jwt',{ session:false}), function(req , res){ 
+app.get('/movies',/*passport.authenticate('jwt',{ session:false}),*/ function(req , res){ 
     
     Movies.find()
      .then(function(movies){
@@ -65,7 +65,7 @@ app.get('/movies',passport.authenticate('jwt',{ session:false}), function(req , 
     }); 
 });
 
-app.get('/movies/:Title',passport.authenticate('jwt',{ session:false}),  function(req , res){
+app.get('/movies/:Title',/*passport.authenticate('jwt',{ session:false}), */ function(req , res){
     
     Movies.find({Title : req.params.Title})
      .then(function(movies){
