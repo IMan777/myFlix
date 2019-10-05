@@ -42,13 +42,13 @@ export class MainView extends React.Component {
     });
   }
 
- onLoggedIn(user) {
+ /*onLoggedIn(user) {
     this.setState({
       user
     });
-  }
+  }*/
 
-  /*onLoggedIn(authData) {
+  onLoggedIn(authData) {
     console.log(authData);
     this.setState({
       user: authData.user.Username
@@ -63,7 +63,7 @@ export class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      // Assign the result to the state
+     
       this.setState({
         movies: response.data
       });
@@ -71,7 +71,7 @@ export class MainView extends React.Component {
     .catch(function (error) {
       console.log(error);
     });
-  }*/
+  }
 
   newRegistration() {
    
