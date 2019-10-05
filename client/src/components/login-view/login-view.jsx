@@ -29,7 +29,7 @@ export function LoginView(props) {
     });
   }; 
 
-  /*const handleSubmit = (e) => {
+ /* const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
     props.onLoggedIn(username)
@@ -66,10 +66,8 @@ export function LoginView(props) {
 
 
 LoginView.propTypes ={
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    newUser: PropTypes.func.isRequired,
+    
     onLoggedIn: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired
+   
  
  };
