@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 
 
-var auth = require('./auth')(app);
+var auth = require('./auth').default(app);
 
 /*Cors Script To Allow Only Certain URLs Access*/
 
@@ -43,7 +43,7 @@ res.send('Welcome To My Flix App!'); /*Default Greeting*/
 
 /*Movie Script Start*/
 
-app.get('/movies',passport.authenticate('jwt',{ session:false}), function(req , res){ 
+app.get('/movies',/*passport.authenticate('jwt',{ session:false}),*/ function(req , res){ 
     
     Movies.find()
      .then(function(movies){
@@ -55,7 +55,7 @@ app.get('/movies',passport.authenticate('jwt',{ session:false}), function(req , 
     }); 
 });
 
-app.get('/movies/:Title',passport.authenticate('jwt',{ session:false}),  function(req , res){
+app.get('/movies/:Title',/*passport.authenticate('jwt',{ session:false}),*/  function(req , res){
     
     Movies.find({Title : req.params.Title})
      .then(function(movies){
