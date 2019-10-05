@@ -31,18 +31,8 @@ var auth = require('./auth')(app);
 
 /*Cors Script To Allow Only Certain URLs Access*/
 
-var allowedOrigins = ['http://localhost:5000','https://my-flix-10.herokuapp.com/','https://my-flix-10.herokuapp.com/movies','https://my-flix-10.herokuapp.com/users','https://my-flix-10.herokuapp.com/movies/:Title','https://my-flix-10.herokuapp.com/movies/director/:Name','https://my-flix-10.herokuapp.com/movies/genres/:Title','https://my-flix-10.herokuapp.com/users/:Username','https://my-flix-10.herokuapp.com/login'];
 
-app.use(cors({
-  origin: function(origin, callback){
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){ 
-      var message = 'The CORS Policy For This App Does Not Permit Access From This Domain ' + origin;
-      return callback(new Error(message ), false);
-    }
-    return callback(null, true);
-  }
-})); 
+app.use(cors()); 
 
 app.get('/',(req,res) =>{
 
@@ -53,7 +43,7 @@ res.send('Welcome To My Flix App!'); /*Default Greeting*/
 
 /*Movie Script Start*/
 
-app.get('/movies',/*passport.authenticate('jwt',{ session:false}),*/ function(req , res){ 
+app.get('/movies',passport.authenticate('jwt',{ session:false}), function(req , res){ 
     
     Movies.find()
      .then(function(movies){
@@ -65,7 +55,7 @@ app.get('/movies',/*passport.authenticate('jwt',{ session:false}),*/ function(re
     }); 
 });
 
-app.get('/movies/:Title',/*passport.authenticate('jwt',{ session:false}), */ function(req , res){
+app.get('/movies/:Title',passport.authenticate('jwt',{ session:false}),  function(req , res){
     
     Movies.find({Title : req.params.Title})
      .then(function(movies){
