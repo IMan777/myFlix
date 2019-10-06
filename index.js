@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 
 
-const auth = require('./auth.js') (app);
+const auth = require('./auth') (app);
 
 /*Cors Script To Allow Only Certain URLs Access*/
 
