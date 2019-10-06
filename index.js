@@ -32,7 +32,15 @@ const auth = require('./auth') (app);
 /*Cors Script To Allow Only Certain URLs Access*/
 
 
-app.use(cors()); 
+/*app.use(cors()); */
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 
 app.get('/',(req,res) =>{
 
