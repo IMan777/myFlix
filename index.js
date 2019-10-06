@@ -27,28 +27,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-
 const auth = require('./auth.js') (app);
-
-/*Cors Script To Allow Only Certain URLs Access*/
-
-/*const corsOptions = {
-  origin: [process.env.URL, 'http://localhost:5000']
-  }
-  app.use(cors(corsOptions))
-  app.options('*', cors(corsOptions),*/
-
-
-
-
-/*app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5000");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST, DELETE,PUT, OPTIONS ");
-  next();
-});*/
-
-
 
 app.get('/',(req,res) =>{
 
@@ -59,7 +38,7 @@ res.send('Welcome To My Flix App!'); /*Default Greeting*/
 
 /*Movie Script Start*/
 
-app.get('/movies',/*passport.authenticate('jwt',{ session:false}),*/ function(req , res){ 
+app.get('/movies',passport.authenticate('jwt',{ session:false}), function(req , res){ 
     
     Movies.find()
      .then(function(movies){
@@ -71,7 +50,7 @@ app.get('/movies',/*passport.authenticate('jwt',{ session:false}),*/ function(re
     }); 
 });
 
-app.get('/movies/:Title',/*passport.authenticate('jwt',{ session:false}),*/  function(req , res){
+app.get('/movies/:Title',passport.authenticate('jwt',{ session:false}), function(req , res){
     
     Movies.find({Title : req.params.Title})
      .then(function(movies){
