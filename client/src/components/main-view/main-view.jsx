@@ -21,8 +21,8 @@ export class MainView extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios.get('https://my-flix-10.herokuapp.com/movies') /*Wont't Be Needed Eventually */
+ /*componentDidMount() {
+    axios.get('https://my-flix-10.herokuapp.com/movies') 
     
     .then(response => {
       this.setState({
@@ -31,6 +31,16 @@ export class MainView extends React.Component {
     }).catch(function (error) {
       console.log(error);
     });
+  } */
+
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
   }
 
   onMovieClick(movie) {  /*Wont't Be Needed Eventually */
