@@ -23,11 +23,12 @@ Parser: true } Due Deprecation Warning From GIT Bash Terminal*/
 
 mongoose.connect('mongodb+srv://myFlixDBadmin:75RT62@mycluster-dxwcr.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useUnifiedTopology: true }); /*Connection With MongoDB Atlas Database Established*/
 
+app.use(cors()); 
 app.use(bodyParser.json());
 
 
 
-const auth = require('./auth') (app);
+const auth = require('./auth.js') (app);
 
 /*Cors Script To Allow Only Certain URLs Access*/
 
@@ -38,7 +39,7 @@ const auth = require('./auth') (app);
   app.options('*', cors(corsOptions),*/
 
 
-app.use(cors()); 
+
 
 /*app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:5000");
