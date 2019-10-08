@@ -3,21 +3,36 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './movie-view.scss';
 
-export class MovieView extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-  
+import { Link } from "react-router-dom";
 
 
-  render() {
+
+
+export function MovieView(props)  {
+ 
+
+ 
     const {
-      movie,
-      onClick
-    } = this.props;
+      movie
+          } = props;
     if (!movie) return null;
     /*Displays Selected Movie Attributes */
+    function addMovie(event) {
+      event.preventDefault();
+      axios.post(`https://my-flix-10.herokuapp.com/users/${localStorage.getItem('user')}/FavouriteFilms/${movie._id}`, {
+        Username: localStorage.getItem('user')
+      }, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+        .then(response => {
+          console.log(response);
+          alert('This Movie Has Been Added To Your Favorites');
+        })
+        .catch(event => {
+          console.log('Error!');
+          alert('Error! Movie Not Added');
+        });
+    };
 
     return (
     <div className="movie-view">
@@ -29,21 +44,20 @@ export class MovieView extends React.Component {
         
           <Card.Title className="label">Description</Card.Title>
           <Card.Text className="value">{movie.Description}</Card.Text>
-     
-          <Card.Title className="label">Genre</Card.Title>
-          <Card.Text className="value">{movie.Genre.Name}</Card.Text>
-       
-        
-          <Card.Title className="label">Director</Card.Title>
-          <Card.Text className="value">{movie.Director.Name}</Card.Text>
-       
-        <br></br>
-        <Button variant="success" onClick={() => onClick() }>Movie List</Button> 
+          <div>
+          <Link to={`/genres/${movie.Genre.Name}`}><Button variant="link">Genre</Button></Link>
+          <Link to={`/directors/${movie.Director.Name}`}><Button variant="link">Director</Button></Link>
+          <Link to={'/'}><Button variant="success" >Movie List</Button> </Link>
+           
+        <Button variant="outline-secondary" onClick={event => addMovie(event)}> Add to Favourites </Button>
+        </div>
        </Card.Body>
+       
+       
+       <Link to={`/`}><Button variant="outline-info">Return</Button></Link> 
 </div>
        
 
     );
     
   }
-}
