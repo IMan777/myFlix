@@ -50,7 +50,7 @@ export class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    localStorage.removeItem("movies");
+    
     this.setState({
       user: null
     });
@@ -104,7 +104,7 @@ export class MainView extends React.Component {
         <Container className="main-view">
           <div>
             <Link to={"/users/${user}"}>
-              <Button variant="light">User Profile</Button>
+              <Button variant="light">Member Profile</Button>
             </Link>
 
             <Button variant="warning" onClick={() => this.onLoggedOut()}>
