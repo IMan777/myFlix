@@ -109,11 +109,11 @@ export class ProfileView extends React.Component {
           </ListGroup>
           <div >
             <Link to={`/`}>
-              <Button variant="outline-info">Return</Button>
+              <Button variant="dark">Return</Button>
             </Link>
           
             <Link to={`/edit/:Username`}>
-              <Button  variant="outline-secondary">Edit Profile </Button>
+              <Button  variant="light">Edit Profile</Button>
             </Link>
           </div>
         </Card.Body>
