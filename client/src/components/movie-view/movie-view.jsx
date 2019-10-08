@@ -5,34 +5,37 @@ import './movie-view.scss';
 
 import { Link } from "react-router-dom";
 
+function addMovie(event) {
+  event.preventDefault();
+  axios.post(`https://my-flix-10.herokuapp.com/users/${localStorage.getItem('user')}/FavouriteFilms/${movie._id}`, {
+    Username: localStorage.getItem('user')
+  }, {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+  })
+    .then(response => {
+      console.log(response);
+      alert('This Movie Has Been Added To Your Favorites');
+    })
+    .catch(event => {
+      console.log('Error!');
+      alert('Error! Movie Not Added');
+    });
+};
 
 
+export class MovieView extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-export function MovieView(props)  {
- 
-
- 
+  render() {
     const {
-      movie
-          } = props;
+      movie,
+      onClick
+    } = this.props;
     if (!movie) return null;
     /*Displays Selected Movie Attributes */
-    function addMovie(event) {
-      event.preventDefault();
-      axios.post(`https://my-flix-10.herokuapp.com/users/${localStorage.getItem('user')}/FavouriteFilms/${movie._id}`, {
-        Username: localStorage.getItem('user')
-      }, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      })
-        .then(response => {
-          console.log(response);
-          alert('This Movie Has Been Added To Your Favorites');
-        })
-        .catch(event => {
-          console.log('Error!');
-          alert('Error! Movie Not Added');
-        });
-    };
 
     return (
     <div className="movie-view">
@@ -61,3 +64,4 @@ export function MovieView(props)  {
     );
     
   }
+}
