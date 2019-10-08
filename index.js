@@ -163,6 +163,17 @@ app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), funct
   })
 });
 
+app.get('/users/:username', passport.authenticate('jwt', { session: false }), (req, res) => { /*Allows To Retrieve User Info*/ 
+  Users.findOne({ Username: req.params.username })
+    .then((user) => {
+      res.status(201).json(user)
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Request error: ' + err);
+    });
+});
+
 app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt',{ session:false}), function(req, res) {  /*Allows User To Add A New Favorite Movie*/
   Users.findOneAndUpdate({ Username : req.params.Username }, {
     $push : { FavoriteFilms : req.params.MovieID }
