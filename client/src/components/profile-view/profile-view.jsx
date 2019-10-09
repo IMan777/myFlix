@@ -91,7 +91,7 @@ export class ProfileView extends React.Component {
               if (movie._id === favouriteFilms.find(favFilm => favFilm === movie._id)) {
                 return <p key={movie._id}>{movie.Title}    <Button variant='danger' size='sm' onClick={() => this.removeMovie(movie._id)}>Remove</Button></p>
               } else if (!favouriteFilms) {
-                return <p>No Favorite Movies yet</p>
+                return <p>No Favorite Movies</p>
               }
             })}
             </ListGroup.Item>
