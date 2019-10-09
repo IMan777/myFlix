@@ -1,12 +1,12 @@
 $blackColor:black;
-$grayColor:gray;
+$navyColor:navy;
 
 .movie-poster{
     border: 2px solid $blackColor;
     box-shadow: 2px 2px $blackColor;
 }
 .view-movie{
-    border:2px solid $grayColor;
+    border:2px solid $blackColor ;
     margin:15px;
     border-radius: 3px;
 }
