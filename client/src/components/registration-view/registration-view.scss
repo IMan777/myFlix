@@ -2,7 +2,12 @@ $borderColor:black;
 
 .registrationForm{
     border: 2px solid $borderColor;
-    padding: 5px;
+    border-radius: 5px;
+    padding: 10px;
     margin-top: 15px;
-    width:80%;
+    width:60%;
+    height:120%;
+    background-color:lightslategrey;
+    font-weight: bold;
+
 }
