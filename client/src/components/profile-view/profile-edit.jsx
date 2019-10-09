@@ -2,7 +2,6 @@ import React, {useState,useEffect } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from "react-router-dom";
 import "./profile-view.scss";
 
 
@@ -35,10 +34,10 @@ export function ProfileEdit(props){
     const handleEdit = e => {
        e.preventDefault();
        const userDetails = {
-         Username: prevUsername,
-         Password: prevPassword,
-         Email: prevEmail,
-         DOB: prevDOB
+         Username: username,
+         Password: password,
+         Email: email,
+         DOB: dob
 
 };
 
@@ -47,7 +46,7 @@ axios.put('https://my-flix-10.herokuapp.com/users/${user}',
       {
         headers: {Authorization: 'Bearer ${localStorage.getItem("token")}' }
       }, ) 
-     then(response => {
+     .then(response => {
        props.editUser(userDetails);
        console.log('Profile Edited');
        alert('Profile Edited Successfully');
