@@ -154,7 +154,7 @@ app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), funct
   if (errors) {
     return res.status(422).json({ errors: errors });
   }
-  Users.update({ Username : req.params.Username }, { $set : /*Allows User To Update Their Info*/
+  Users.findOneAndUpdate({ Username : req.params.Username }, { $set : /*Allows User To Update Their Info*/
   {
     Username : req.body.Username,
     Password : req.body.Password,
