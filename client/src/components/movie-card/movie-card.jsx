@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import "./movie-card.scss";
 import Container from "react-bootstrap/Container";
+import "./movie-card.scss";
+
 
 import { Link } from "react-router-dom";
 
@@ -13,7 +14,8 @@ export class MovieCard extends React.Component {
 
     return (
       <Container>
-        <Card style={{ width: "16rem" }} className="movie-card">
+        
+        <Card style={{ minWidth: "12rem",maxWidth:"18rem" }} className="movie-card">
           <Card.Img variant="top" src={movie.ImagePath} />
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
@@ -24,6 +26,7 @@ export class MovieCard extends React.Component {
             </Link>
           </Card.Body>
         </Card>
+       
       </Container>
     );
   }
