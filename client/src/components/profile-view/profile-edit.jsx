@@ -1,26 +1,34 @@
 import React, {useState,useEffect } from 'react';
 import axios from 'axios';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { Link } from "react-router-dom";
+import "./profile-view.scss";
+
+
+
 
 export function ProfileEdit(props){
+  
   const {
          Username: prevUsername,
          Password: prevPassword,
          Email: prevEmail,
          DOB: prevDOB
-   } = userDetails;
+   } = props.userDetails;
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
    const [email, setEmail] = useState('');
-   const [DOB, setDOB] = useState('');
+   const [dob, setDOB] = useState('');
+
+  
 
    useEffect (() => {
        setUsername(prevUsername);
        setPassword(prevPassword);
        setEmail(prevEmail);
        setDOB(prevDOB); 
-    }, [prevUsername,prevPassword,prevEmail,prevDOB]);
+    }, [prevUsername, prevPassword, prevEmail, prevDOB]);
 
     const user = props.user;
 
@@ -34,22 +42,7 @@ export function ProfileEdit(props){
 
 };
 
-const handleDeletion = (e) => {
-    e.preventDefault();
-    axios.delete('https://may-flix-10.herokupp.com/users/${user}',{
-       headers: {Authorization: 'Bearer ${localStorage.getItem("token")}' }
-    })
-      .then(response => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        window.open('/', '_self');
-     })
-       .catch(e => {
-         alert('Deletion Error');
-     });
-  } 
-
-  axios.put('https://my-flix-10.herokuapp.com/users/${user}',
+axios.put('https://my-flix-10.herokuapp.com/users/${user}',
     userDetails,
       {
         headers: {Authorization: 'Bearer ${localStorage.getItem("token")}' }
@@ -69,8 +62,26 @@ const handleDeletion = (e) => {
       });
 }
 
+ const handleDeletion = (e) => {
+    e.preventDefault();
+    axios.delete('https://may-flix-10.herokupp.com/users/${user}',{
+       headers: {Authorization: 'Bearer ${localStorage.getItem("token")}' }
+    })
+      .then(response => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.open('/', '_self');
+     })
+       .catch(e => {
+         alert('Deletion Error');
+     });
+  } 
+
+  
+
  return(
-     <Form>
+     <Form className="profileedit">
+       
       <Form.Group controlId ="formBasicUsername">
       <Form.Label>Username:</Form.Label>
         <Form.Control type="text" placeholder="Set Username"  value={username} onChange={e => setUsername(e.target.value)} />
@@ -85,14 +96,14 @@ const handleDeletion = (e) => {
       </Form.Group>
       <Form.Group controlId ="formBasicDOB"> 
       <Form.Label>Date Of Birth:</Form.Label>
-        <Form.Control type="date" value={DOB}  placeholder="Enter Date of Birthday" onChange={e => setDOB(e.target.value)} />
+        <Form.Control type="date" value={dob}  placeholder="Enter Date of Birthday" onChange={e => setDOB(e.target.value)} />
       </Form.Group>
       <div>
       <Button variant="success" type="submit" onClick={handleEdit}>Edit Profile</Button>
-       <br></br>
-      <Button variant="success" type="submit" onClick={handleDeletion}>Delete Profile</Button>
-      <br></br>
-       <Link to={`/`}><Button variant="outline-info">Return</Button></Link> 
+      
+      <Button variant="danger" type="submit" onClick={handleDeletion}>Delete Profile</Button>
+      
+       
        </div>
        
     </Form>
