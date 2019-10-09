@@ -143,7 +143,7 @@ app.get('/users', passport.authenticate('jwt',{ session:false}),function(req , r
     }); 
 });
 
-app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), function(req, res) {
+/*app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), function(req, res) {
   req.checkBody('Username', 'Username is required').notEmpty();
   req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric();
   req.checkBody('Password', 'Password is required').notEmpty();
@@ -154,8 +154,7 @@ app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), funct
   if (errors) {
     return res.status(422).json({ errors: errors });
   }
-  Users.findOneAndUpdate({ Username : req.params.Username }, { $set : /*Allows User To Update Their Info*/
-  {
+  Users.findOneAndUpdate({ Username : req.params.Username }, { $set : 
     Username : req.body.Username,
     Password : req.body.Password,
     Email : req.body.Email,
@@ -171,7 +170,28 @@ app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), funct
       res.json(updatedUser)
     }
   })
-});
+}); */
+
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), function (req, res) {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+    $set:                                                                                     /*Allows User To Update Their Info*/
+    {
+      Username: req.body.Username,
+      Password: req.body.Password,
+      Email: req.body.Email,
+      DOB: req.body.DOB
+    }
+  },
+    { new: true },
+    function (error, updatedUser) {
+      if (error) {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      } else {
+        res.json(updatedUser)
+      }
+    })
+ });
 app.get('/users/:username', passport.authenticate('jwt', { session: false }), (req, res) => { /*Allows To Retrieve User Info*/ 
   Users.findOne({ Username: req.params.username })
     .then((user) => {
