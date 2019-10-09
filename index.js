@@ -177,7 +177,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), fu
     $set:                                                                                     /*Allows User To Update Their Info*/
     {
       Username: req.body.Username,
-      Password: hashedPassword,
+      Password: Users.hashPassword(req.body.Password),
       Email: req.body.Email,
       DOB: req.body.DOB
     }
@@ -191,7 +191,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), fu
         res.json(updatedUser)
       }
     })
- });
+  });
 app.get('/users/:username', passport.authenticate('jwt', { session: false }), (req, res) => { /*Allows To Retrieve User Info*/ 
   Users.findOne({ Username: req.params.username })
     .then((user) => {
