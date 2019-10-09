@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-import { Link } from "react-router-dom";
+
 import "./profile-view.scss";
 
 export class ProfileView extends React.Component {
