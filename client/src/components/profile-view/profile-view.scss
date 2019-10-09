@@ -2,8 +2,23 @@ $borderColor:black;
 
 .profileview{
     border: 2px solid $borderColor;
+    border-radius: 5px;
     padding: 10px;
     margin-top: 15px;
-   
-    background-color:lightgrey;
+    width:110%;
+    height:120%;
+    background-color:lightblue;
+    font-weight: bold;
+
+}
+.profileedit{
+    border: 2px solid $borderColor;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 15px;
+    width:60%;
+    height:120%;
+    background-color:rgb(88, 114, 122);
+    font-weight: bold; 
+    color: whitesmoke;
 }
