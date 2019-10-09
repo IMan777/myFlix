@@ -41,10 +41,10 @@ export function ProfileEdit(props){
 
 };
 
-axios.put('https://my-flix-10.herokuapp.com/users/${user}',
+axios.put(`https://my-flix-10.herokuapp.com/users/${user}`,
     userDetails,
       {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } 
       }, ) 
      .then(response => {
        props.editUser(userDetails);
@@ -63,13 +63,13 @@ axios.put('https://my-flix-10.herokuapp.com/users/${user}',
 
  const handleDeletion = (e) => {
     e.preventDefault();
-    axios.delete('https://may-flix-10.herokupp.com/users/${user}',{
+    axios.delete(`https://may-flix-10.herokupp.com/users/${user}`,{
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     },)
       .then(response => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        localStorage.removeItem("movies");
+        localStorage.removeItem('movies');
         window.open('/', '_self');
      })
        .catch(e => {
