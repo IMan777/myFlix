@@ -3,6 +3,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/Container';
 import { Link } from "react-router-dom";
 import "./profile-view.scss";
 
@@ -21,8 +22,9 @@ export class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-    
+
     const accessToken = localStorage.getItem('token');
+    console.log(accessToken);
     if (accessToken !== null) {
       this.getUser(accessToken);
     }
@@ -30,17 +32,19 @@ export class ProfileView extends React.Component {
 
   getUser(token) {
     let username = localStorage.getItem('user');
-    axios.get('https://my-flix-10.herokuapp.com/users/${username}', {
+    console.log(username);
+    axios.get(`https://my-flix-10.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
+        console.log(response.data);
         this.setState({
           userData: response.data,
           username: response.data.Username,
           password: response.data.Password,
           email: response.data.Email,
           dob: response.data.DOB,
-          favouriteFilms: response.data.FavouriteFilms
+          favouriteFilms: response.data.FavoriteFilms
         });
       })
       .catch(function (error) {
@@ -48,10 +52,10 @@ export class ProfileView extends React.Component {
       });
   }
 
-  removeMovie(event, favouriteFilm) {
+  removeMovie(movieId) {
     event.preventDefault();
-    console.log(favouriteFilm);
-    axios.delete(`https://my-flix-10.herokuapp.com/users/${localStorage.getItem('user')}/FavouriteFilms/${favoriteFilm}`, {
+
+    axios.delete(`https://my-flix-10.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(response => {
@@ -62,7 +66,7 @@ export class ProfileView extends React.Component {
       });
   }
 
-  
+
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value })
@@ -72,8 +76,9 @@ export class ProfileView extends React.Component {
     const { username, email, dob, favouriteFilms } = this.state;
 
     return (
-      <Card   style={{ width: '25rem' }}>
-        
+      <Container>
+      <Card style={{ width: '25rem' }}>
+
         <Card.Body className="profileview">
           <Card.Title>Profile</Card.Title>
           <ListGroup>
@@ -82,42 +87,20 @@ export class ProfileView extends React.Component {
             <ListGroup.Item>Email: {email}</ListGroup.Item>
             <ListGroup.Item>Birthday: {dob}</ListGroup.Item>
             <ListGroup.Item>Favourite Films:
-             <div>
-                {favouriteFilms.length === 0 &&
-                  <div className="value">No Favorites Added</div>
-                }
-                {favouriteFilms.length > 0 &&
-                  <ul>
-                    {favouriteFilms.map(favouriteFilm =>
-                      (<li key={favouriteFilm}>
-                        <p>
-                          {JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === favouriteFilm).Title}
-                        </p>
-                        <Link to={`/movies/${favouriteFilm}`}>
-                          <Button size="sm" variant="info">Open</Button>
-                        </Link>
-                        <Button variant="secondary" size="sm" onClick={(event) => this.removeMovie(event, favouriteFilm)}>
-                          Delete Movie 
-                        </Button>
-                       
-                      </li>)
-                    )}
-                  </ul>
-                }
-              </div>
+            {this.props.movies.map(movie => {
+              if (movie._id === favouriteFilms.find(favFilm => favFilm === movie._id)) {
+                return <p key={movie._id}>{movie.Title}    <Button variant='danger' size='sm' onClick={() => this.removeMovie(movie._id)}>Remove</Button></p>
+              } else if (!favouriteFilms) {
+                return <p>No Favorite Movies yet</p>
+              }
+            })}
             </ListGroup.Item>
           </ListGroup>
-          <div >
-            <Link to={`/`}>
-              <Button variant="dark">Return</Button>
-            </Link>
           
-            <Link to={`/edit/:Username`}>
-              <Button  variant="light">Edit Profile</Button>
-            </Link>
-          </div>
         </Card.Body>
       </Card>
+     
+      </Container>
     );
   }
 }
