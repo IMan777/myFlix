@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
+
 import "./registration-view.scss";
 
 export function RegistrationView(props) {
@@ -77,9 +77,7 @@ export function RegistrationView(props) {
         <Button variant="dark" onClick={submitRegistration}>
           Submit
         </Button>
-        <Link to={`/`}>
-          <Button variant="outline-info">Return</Button>
-        </Link>
+        
       </Form>
     </Container>
   );
