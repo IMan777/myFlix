@@ -2,8 +2,12 @@ $borderColor:black;
 
 .loginForm{
     border: 2px solid $borderColor;
+    border-radius: 5px;
     padding: 10px;
     margin-top: 15px;
     width:40%;
-    background-color: gray;
+    height:120%;
+    background-color:lightseagreen;
+    font-weight: bold;
+
 }
