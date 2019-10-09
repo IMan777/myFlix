@@ -171,13 +171,13 @@ app.get('/users', passport.authenticate('jwt',{ session:false}),function(req , r
     }
   })
 }); */
-
+var hashedPassword = Users.hashPassword(req.body.Password);  
 app.put('/users/:Username', passport.authenticate('jwt', { session: false }), function (req, res) {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $set:                                                                                     /*Allows User To Update Their Info*/
     {
       Username: req.body.Username,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Email: req.body.Email,
       DOB: req.body.DOB
     }
