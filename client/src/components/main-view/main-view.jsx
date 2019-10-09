@@ -109,17 +109,18 @@ export class MainView extends React.Component {
         <Container className="main-view">
           <Navbar sticky="top" bg="light">
             <Link to={"/users/${user}"}>
-              <Button variant="info">User Profile</Button>
+              <Button variant="primary">User Profile</Button>
             </Link>
             <Link to={"/edit/:Username"}>
-              <Button variant="danger">Edit Profile </Button>
+              <Button variant="secondary">Edit Profile </Button>
             </Link>
-
-            <Button variant="primary" onClick={() => this.onLoggedOut()}>
-              {" "}
-              Log Out{" "}
-            </Button>
-            <Link to={`/`}><Button variant="dark">Return</Button></Link> 
+            
+            <Link to={`/`}>
+              <Button variant="primary" onClick={() => this.onLoggedOut()}>Log Out</Button>
+            </Link>
+            <Link to={`/`}>
+              <Button variant="secondary">Return</Button>
+              </Link> 
           </Navbar>
           <Row>
             <Route
