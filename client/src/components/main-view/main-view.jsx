@@ -16,6 +16,7 @@ import { ProfileEdit } from "../profile-view/profile-edit";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
+import Navbar from 'react-bootstrap/Navbar'
 import "./main-view.scss";
 
 export class MainView extends React.Component {
@@ -23,7 +24,10 @@ export class MainView extends React.Component {
     super(props);
     this.state = {
       movies: [],
-      user: null
+      user: null,
+      userDetails:{},
+      email: '',
+      dob:''
     };
   }
 
@@ -36,6 +40,22 @@ export class MainView extends React.Component {
       this.getMovies(accessToken);
     }
   }
+
+  getMovies(token) {
+    axios
+      .get("https://my-flix-10.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
@@ -50,27 +70,12 @@ export class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    
+    localStorage.removeItem("movies");
     this.setState({
       user: null
     });
-    widow.open("/", _self);
   }
 
-  getMovies(token) {
-    axios
-      .get("https://my-flix-10.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      .then(response => {
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  }
 
   getUser(token) {
     axios
@@ -82,7 +87,7 @@ export class MainView extends React.Component {
           users: response.data
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -102,16 +107,20 @@ export class MainView extends React.Component {
     return (
       <Router>
         <Container className="main-view">
-          <div>
+          <Navbar sticky="top" bg="light">
             <Link to={"/users/${user}"}>
-              <Button variant="light">Member Profile</Button>
+              <Button variant="info">User Profile</Button>
+            </Link>
+            <Link to={"/edit/:Username"}>
+              <Button variant="danger">Edit Profile </Button>
             </Link>
 
-            <Button variant="warning" onClick={() => this.onLoggedOut()}>
+            <Button variant="primary" onClick={() => this.onLoggedOut()}>
               {" "}
               Log Out{" "}
             </Button>
-          </div>
+            <Link to={`/`}><Button variant="dark">Return</Button></Link> 
+          </Navbar>
           <Row>
             <Route
               exact
@@ -126,13 +135,7 @@ export class MainView extends React.Component {
             />
             <Route path="/register" render={() => <RegistrationView />} />
 
-            <Route
-              exact
-              path="/"
-              render={() =>
-                movies.map(m => <MovieCard key={m._id} movie={m} />)
-              }
-            />
+            
 
             <Route
               path="/movies/:movieId"
@@ -150,7 +153,7 @@ export class MainView extends React.Component {
                   <DirectorView
                     director={
                       movies.find(m => m.Director.Name === match.params.name).Director
-                        
+
                     }
                   />
                 );
@@ -172,7 +175,7 @@ export class MainView extends React.Component {
             <Route
               path="/users/:Username"
               render={({ match }) => {
-                return <ProfileView userDetails={userDetails} />;
+                return <ProfileView userDetails={userDetails} movies={movies} />;
               }}
             />
             <Route
