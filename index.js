@@ -144,7 +144,17 @@ app.get('/users', passport.authenticate('jwt',{ session:false}),function(req , r
 });
 
 app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), function(req, res) {
-  Users.findOneAndUpdate({ Username : req.params.Username }, { $set : /*Allows User To Update Their Info*/
+  req.checkBody('Username', 'Username is required').notEmpty();
+  req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric();
+  req.checkBody('Password', 'Password is required').notEmpty();
+  req.checkBody('Email', 'Email is required').notEmpty();
+  req.checkBody('Email', 'Email does not appear to be valid').isEmail();
+  // check the validation object for errors
+  const errors = req.validationErrors();
+  if (errors) {
+    return res.status(422).json({ errors: errors });
+  }
+  Users.update({ Username : req.params.Username }, { $set : /*Allows User To Update Their Info*/
   {
     Username : req.body.Username,
     Password : req.body.Password,
@@ -162,7 +172,6 @@ app.put('/users/:Username', passport.authenticate('jwt',{ session:false}), funct
     }
   })
 });
-
 app.get('/users/:username', passport.authenticate('jwt', { session: false }), (req, res) => { /*Allows To Retrieve User Info*/ 
   Users.findOne({ Username: req.params.username })
     .then((user) => {
