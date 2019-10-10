@@ -78,9 +78,11 @@ export class ProfileView extends React.Component {
     return (
       <Container>
       <Card style={{ width: '25rem' }}>
-
+      
         <Card.Body className="profileview">
-          <Card.Title>Profile</Card.Title>
+        
+          <Card.Title className="title">Profile View</Card.Title>
+          <p style={{ textAlign: "center" }}>View Your Information.</p>
           <ListGroup>
             <ListGroup.Item>Username: {username}</ListGroup.Item>
             <ListGroup.Item>Password: Not Displayed For Security Purposes </ListGroup.Item>
