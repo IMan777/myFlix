@@ -2,6 +2,7 @@ import React, {useState,useEffect } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container'
 
 import "./profile-view.scss";
 
@@ -9,6 +10,7 @@ import "./profile-view.scss";
 
 
 export function ProfileEdit(props){
+  const {token} = props;
   
   const {
          Username: prevUsername,
@@ -31,6 +33,7 @@ export function ProfileEdit(props){
     }, [prevUsername, prevPassword, prevEmail, prevDOB]);
 
     const user = props.user;
+    
 
     const handleEdit = e => {
        e.preventDefault();
@@ -41,6 +44,8 @@ export function ProfileEdit(props){
          DOB: dob
 
 };
+
+
 
 axios.put(`https://my-flix-10.herokuapp.com/users/${user}`,
     userDetails,
@@ -61,28 +66,29 @@ axios.put(`https://my-flix-10.herokuapp.com/users/${user}`,
        alert('Error In Editing Profile')
       });
 }
-
-  const handleDeletion = (event) => {
-    event.preventDefault();
-    axios.delete(`https://may-flix-10.herokupp.com/users/${user}`,{
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    },)
-      .then(response => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        
-        window.open('/', '_self');
-     })
-       .catch(event => {
-         alert('Deletion Error');
-     });
-  } 
+const handleDeletion = (event) => {
+  event.preventDefault();
+  let username = localStorage.getItem('user');
+  console.log(username);
+  axios.delete(`https://may-flix-10.herokupp.com/users/${username}`,{
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(response => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.open('/', '_self');
+    })
+     .catch(e => {
+       alert('Deletion Error',e);
+   });
+} 
+ 
 
   
     
  return(
    
-
+   <Container>
      <Form className="profileedit">
        <h3 className="title">Profile Edit</h3>
        <p style={{ textAlign: "center"} }>This Section Will Allow You To Update Your Information.</p>
@@ -105,11 +111,11 @@ axios.put(`https://my-flix-10.herokuapp.com/users/${user}`,
       <div>
       <Button variant="success" type="submit" onClick={handleEdit}>Edit Profile</Button>
       <Button variant="danger" type="submit" onClick={handleDeletion}>Delete Profile</Button>
-      
-      
+     
        </div>
        </Form>
        
+  </Container>
    
  );
  }
