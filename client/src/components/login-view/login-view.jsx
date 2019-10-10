@@ -30,7 +30,9 @@ export function LoginView(props) {
 
   return (
     <Container>
+      <h4 className="Logintitle">Welcome To My Favorite Flix App!</h4>
       <Form className="loginForm">
+      <h3 className="title"></h3>
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
