@@ -17,6 +17,7 @@ export class DirectorView extends React.Component {
 
     return (
       <Card>
+        <h3 className="title">Director Info</h3>
         <Card.Body className="directorview">
           <Card.Title>{director.Name}</Card.Title>
           <Card.Text>
