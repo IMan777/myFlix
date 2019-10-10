@@ -17,6 +17,7 @@ export class GenreView extends React.Component {
 
     return (
       <Card>
+        <h3 className="title">Genre Info</h3>
         <Card.Body className="genreview">
           <Card.Title>{genre.Name}</Card.Title>
           <Card.Text>
@@ -24,7 +25,7 @@ export class GenreView extends React.Component {
             <br />
           </Card.Text>
           <div>
-            <Link to={"/"}>
+            <Link to={'/'}>
               <Button variant="dark">Return</Button>
             </Link>
           </div>
