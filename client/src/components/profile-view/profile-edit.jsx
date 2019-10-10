@@ -2,6 +2,7 @@ import React, {useState,useEffect } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+
 import "./profile-view.scss";
 
 
@@ -61,27 +62,30 @@ axios.put(`https://my-flix-10.herokuapp.com/users/${user}`,
       });
 }
 
- const handleDeletion = (e) => {
-    e.preventDefault();
+  const handleDeletion = (event) => {
+    event.preventDefault();
     axios.delete(`https://may-flix-10.herokupp.com/users/${user}`,{
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     },)
       .then(response => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        localStorage.removeItem('movies');
+        
         window.open('/', '_self');
      })
-       .catch(e => {
+       .catch(event => {
          alert('Deletion Error');
      });
   } 
 
   
-
+    
  return(
+   
+
      <Form className="profileedit">
-       
+       <h3 className="title">Profile Edit</h3>
+       <p style={{ textAlign: "center"} }>This Section Will Allow You To Update Your Information.</p>
       <Form.Group controlId ="formBasicUsername">
       <Form.Label>Username:</Form.Label>
         <Form.Control type="text" placeholder="Set Username"  value={username} onChange={e => setUsername(e.target.value)} />
@@ -100,14 +104,14 @@ axios.put(`https://my-flix-10.herokuapp.com/users/${user}`,
       </Form.Group>
       <div>
       <Button variant="success" type="submit" onClick={handleEdit}>Edit Profile</Button>
-      
       <Button variant="danger" type="submit" onClick={handleDeletion}>Delete Profile</Button>
       
-       
+      
        </div>
+       </Form>
        
-    </Form>
    
  );
  }
+ 
 
