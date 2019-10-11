@@ -3,9 +3,11 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Container from 'react-bootstrap/Container';
+
+
 
 import "./profile-view.scss";
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
 export class ProfileView extends React.Component {
 
@@ -65,6 +67,21 @@ export class ProfileView extends React.Component {
         alert('Error');
       });
   }
+  removeUser(username) {
+    event.preventDefault();
+
+    axios.delete(`https://my-flix-10.herokuapp.com/users/${localStorage.getItem('user')}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    })
+      .then(response => {
+        this.getUser(localStorage.getItem('token'));
+        alert('Account Deleted Successfully');
+        
+      })
+      .catch(event => {
+        alert('Error');
+      });
+  }
 
 
 
@@ -76,16 +93,17 @@ export class ProfileView extends React.Component {
     const { username, email, dob, favouriteFilms } = this.state;
 
     return (
-      <Container>
-      <Card style={{ width: '25rem' }}>
+     
+      <Card style={{ width: '25rem' }} className="profileview">
       
-        <Card.Body className="profileview">
+        <Card.Body >
         
           <Card.Title className="title">Profile View</Card.Title>
-          <p style={{ textAlign: "center" }}>View Your Information.</p>
+          <p className="title" style={{ textAlign: "center" }}>View Your Information.</p>
+          <p className="title" style={{ textAlign: "center"}}>Or Delete Membership (Proceed With Caution!)</p>
           <ListGroup>
             <ListGroup.Item>Username: {username}</ListGroup.Item>
-            <ListGroup.Item>Password: Not Displayed For Security Purposes </ListGroup.Item>
+            <ListGroup.Item>Password: xxxxx </ListGroup.Item>
             <ListGroup.Item>Email: {email}</ListGroup.Item>
             <ListGroup.Item>Birthday: {dob}</ListGroup.Item>
             <ListGroup.Item>Favourite Films:
@@ -97,14 +115,32 @@ export class ProfileView extends React.Component {
               }
             })}
             </ListGroup.Item>
+            <ListGroupItem><Button variant='danger' size='sm' onClick={() => this.removeUser(username)}>Delete Profile</Button></ListGroupItem>
           </ListGroup>
           
         </Card.Body>
+        
       </Card>
      
-      </Container>
+     
     );
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
