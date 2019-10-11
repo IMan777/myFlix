@@ -6,11 +6,8 @@ import Container from 'react-bootstrap/Container'
 
 import "./profile-view.scss";
 
-
-
-
 export function ProfileEdit(props){
-  const {token} = props;
+ 
   
   const {
          Username: prevUsername,
@@ -66,26 +63,7 @@ axios.put(`https://my-flix-10.herokuapp.com/users/${user}`,
        alert('Error In Editing Profile')
       });
 }
-const handleDeletion = (event) => {
-  event.preventDefault();
-  let username = localStorage.getItem('user');
-  console.log(username);
-  axios.delete(`https://may-flix-10.herokupp.com/users/${username}`,{
-    headers: { Authorization: `Bearer ${token}` }
-  })
-    .then(response => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.open('/', '_self');
-    })
-     .catch(e => {
-       alert('Deletion Error',e);
-   });
-} 
- 
 
-  
-    
  return(
    
    <Container>
@@ -105,13 +83,12 @@ const handleDeletion = (event) => {
         <Form.Control type="email" value={email} placeholder="Enter EMail"  onChange={e => setEmail(e.target.value)} />
       </Form.Group>
       <Form.Group controlId ="formBasicDOB"> 
-      <Form.Label>Date Of Birth:</Form.Label>
+      <Form.Label>Birthday:</Form.Label>
         <Form.Control type="date" value={dob}  placeholder="Enter Date of Birthday" onChange={e => setDOB(e.target.value)} />
       </Form.Group>
       <div>
       <Button variant="success" type="submit" onClick={handleEdit}>Edit Profile</Button>
-      <Button variant="danger" type="submit" onClick={handleDeletion}>Delete Profile</Button>
-     
+      
        </div>
        </Form>
        
