@@ -27,7 +27,8 @@ export class MainView extends React.Component {
       user: null,
       userDetails:{},
       email: '',
-      dob:''
+      dob:'',
+      username:null
     };
   }
 
@@ -106,21 +107,24 @@ export class MainView extends React.Component {
 
     return (
       <Router>
-        <Container className="main-view">
-          <Navbar bg="light"  sticky="top" >
+        <Container>
+          <Navbar className="navigateBar" bg="dark"  sticky="top" >
             <Link to={"/users/${user}"}>
-              <Button variant="primary">User Profile</Button>
+              <Button variant="primary" size="sm">User Profile</Button>
             </Link>
+            {"   "}
             <Link to={"/edit/:Username"}>
-              <Button variant="secondary">Edit Profile </Button>
+              <Button variant="secondary" size="sm">Edit Profile </Button>
             </Link>
-            
+            {"   "}
             <Link to={`/`}>
-              <Button variant="primary" onClick={() => this.onLoggedOut()}>Log Out</Button>
+              <Button variant="primary" size="sm" onClick={() => this.onLoggedOut()}>Log Out</Button>
             </Link>
+            {"   "}
             <Link to={`/`}>
-              <Button variant="secondary">Return</Button>
+              <Button variant="secondary" size="sm">Return</Button>
               </Link> 
+              <h3 className="appTitle">My Flix App!</h3>
           </Navbar>
           <Row>
             <Route
