@@ -148,7 +148,7 @@ app.get('/users', passport.authenticate('jwt',{ session:false}),function(req , r
   req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric();
   req.checkBody('Password', 'Password is required').notEmpty();
   req.checkBody('Email', 'Email is required').notEmpty();
-  req.checkBody('Email', 'Email does not appear to be valid').isEmail();
+  req.checkBody('Email', 'Email does not appear to be valid').isEmail();  Maintain For Possible Future Use
   // check the validation object for errors
   const errors = req.validationErrors();
   if (errors) {
