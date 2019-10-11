@@ -5,10 +5,12 @@ $borderColor:black;
     border-radius: 5px;
     padding: 10px;
     margin-top: 15px;
-    width:110%;
+    width:120%;
     height:120%;
-    background-color:lightblue;
+    background-color:lightgrey;
+    font-variant: small-caps;
     font-weight: bold;
+    margin:auto;
 
 }
 .profileedit{
@@ -19,6 +21,8 @@ $borderColor:black;
     width:60%;
     height:120%;
     background-color:rgb(88, 114, 122);
-    font-weight: bold; 
     color: whitesmoke;
+    margin:auto;
+    font-variant: small-caps;
+    font-weight: bold;
 }
