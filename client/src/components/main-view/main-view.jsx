@@ -108,9 +108,9 @@ export class MainView extends React.Component {
     return (
       <Router>
         <Container>
-          <Navbar className="navigateBar" bg="dark"  sticky="top" >
+          <Navbar className="navigateBar" bg="light"  sticky="top" >
             <Link to={"/users/${user}"}>
-              <Button variant="primary" size="sm">User Profile</Button>
+              <Button variant="secondary" size="sm">View Profile</Button>
             </Link>
             {"   "}
             <Link to={"/edit/:Username"}>
@@ -118,7 +118,7 @@ export class MainView extends React.Component {
             </Link>
             {"   "}
             <Link to={`/`}>
-              <Button variant="primary" size="sm" onClick={() => this.onLoggedOut()}>Log Out</Button>
+              <Button variant="secondary" size="sm" onClick={() => this.onLoggedOut()}>Log Out</Button>
             </Link>
             {"   "}
             <Link to={`/`}>
