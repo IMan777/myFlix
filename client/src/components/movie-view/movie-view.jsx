@@ -2,18 +2,11 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
+import { Link } from "react-router-dom";
 import './movie-view.scss';
 
-import { Link } from "react-router-dom";
-
-
-
-
 export function MovieView(props) {
-
-
-
-  const {
+ const {
     movie
   } = props;
   if (!movie) return null;
@@ -55,8 +48,6 @@ export function MovieView(props) {
         </div>
       </Card.Body>
       </Card>
-
-            
     </div>
 
 
