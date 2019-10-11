@@ -3,11 +3,9 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-
-
-
-import "./profile-view.scss";
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import "./profile-view.scss";
+
 
 export class ProfileView extends React.Component {
 
