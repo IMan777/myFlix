@@ -8,6 +8,8 @@ const cors = require('cors');
 
 const port = process.env.PORT || 5000;
 
+const path = require("path");
+
 const Movies = Models.Movie;
 const Users =  Models.User;
 
@@ -28,6 +30,13 @@ app.use(bodyParser.json());
 
 
 const auth = require('./auth.js') (app);
+
+app.use(express.static("public"));
+app.use('/client', express.static(path.join(__dirname, 'dist')));
+
+app.get("/client/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 app.get('/',(req,res) =>{
 
