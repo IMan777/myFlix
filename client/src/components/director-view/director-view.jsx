@@ -2,19 +2,16 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+
+import {connect} from "react-redux";
 import "./director-view.scss";
 
-export class DirectorView extends React.Component {
-  constructor() {
-    super();
+function DirectorView(props)  {
+  
+    const { directorName , movies } = props;
+    if (!movies) return null;
 
-    this.state = {};
-  }
-
-  render() {
-    const { director } = this.props;
-    if (!director) return null;
-
+    const director = movies.find(movie => movie.Director === directorName).Director;
     return (
       <Card>
         <h3 className="title">Director Info</h3>
@@ -34,4 +31,5 @@ export class DirectorView extends React.Component {
       </Card>
     );
   }
-}
+
+  export default connect (({movies}) =>({movies}))(DirectorView);
