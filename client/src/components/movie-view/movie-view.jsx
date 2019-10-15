@@ -3,14 +3,18 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
+
 import './movie-view.scss';
 
-export function MovieView(props) {
+ function MovieView(props) {
  const {
-    movie
+    movies ,movieId
   } = props;
-  if (!movie) return null;
-  /*Displays Selected Movie Attributes */
+  if (!movies) return null;
+ 
+  const movie = movies.find(movie =>movie._id === movieId)
+
   function addMovie(event) {
     event.preventDefault();
     console.log('click click boom')
@@ -54,3 +58,5 @@ export function MovieView(props) {
   );
 
 }
+
+export default connect (({movies}) =>({movies}))(MovieView);
