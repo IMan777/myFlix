@@ -2,26 +2,24 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+
+import {connect} from "react-redux";
 import "./genre-view.scss";
 
-export class GenreView extends React.Component {
-  constructor() {
-    super();
+function GenreView (props) {
+ 
+    const { titleName , movies} = props;
+    if (!movies) return null;
 
-    this.state = {};
-  }
-
-  render() {
-    const { genre } = this.props;
-    if (!genre) return null;
+    const movie = movies.find(movie => movie.Title === titleName);
 
     return (
       <Card>
         <h3 className="title">Genre Info</h3>
         <Card.Body className="genreview">
-          <Card.Title>{genre.Name}</Card.Title>
+          <Card.Title>{movie.genre.Name}</Card.Title>
           <Card.Text>
-            Description:{genre.Description}
+            Description:{movie.genre.Description}
             <br />
           </Card.Text>
           <div>
@@ -33,4 +31,5 @@ export class GenreView extends React.Component {
       </Card>
     );
   }
-}
+
+export default connect (({movies}) =>({movies}))(GenreView);
