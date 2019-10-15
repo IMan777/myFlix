@@ -3,9 +3,10 @@ import axios from "axios";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import {connect} from "react-redux";
 
-import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+
+
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { DirectorView } from "../director-view/director-view";
@@ -16,10 +17,15 @@ import { ProfileEdit } from "../profile-view/profile-edit";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
-import Navbar from 'react-bootstrap/Navbar'
+import Navbar from 'react-bootstrap/Navbar';
+
+import {setLogin , setMovies} from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
+import  MovieView  from "../movie-view/movie-view";
+
 import "./main-view.scss";
 
-export class MainView extends React.Component {
+ class MainView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,17 +45,21 @@ export class MainView extends React.Component {
         user: localStorage.getItem("user")
       });
       this.getMovies(accessToken);
+      this.getUser(localStorage.getItem("user"),accessToken);
     }
   }
 
   getMovies(token) {
     axios
       .get("https://my-flix-10.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` }    /*Will Review*/
       })
       .then(response => {
+        this.props.setMovies(response.data);
         this.setState({
+         
           movies: response.data
+
         });
       })
       .catch(function (error) {
@@ -66,6 +76,7 @@ export class MainView extends React.Component {
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
     this.getMovies(authData.token);
+    this.props.setLogin(authData.user);
   }
 
   onLoggedOut() {
@@ -81,7 +92,7 @@ export class MainView extends React.Component {
   getUser(token) {
     axios
       .get("https://my-flix-10.herokuapp.com/users", {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` } /*Will Review*/
       })
       .then(response => {
         this.setState({
@@ -106,7 +117,7 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-      <Router>
+      <Router basename="/client">
         <Container>
           <Navbar className="navigateBar" bg="light"  sticky="top" >
             <Link to={"/users/${user}"}>
@@ -127,17 +138,11 @@ export class MainView extends React.Component {
               <h3 className="appTitle">My Flix App!</h3>
           </Navbar>
           <Row>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                if (!user)
-                  return (
-                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-                  );
-                return movies.map(m => <MovieCard key={m._id} movie={m} />);
-              }}
-            />
+          
+           <Route exact path="/" render={() => {
+             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+             return <MoviesList/>;
+            }} />
             <Route path="/register" render={() => <RegistrationView />} />
 
             
@@ -200,3 +205,4 @@ export class MainView extends React.Component {
     );
   }
 }
+export default connect(null, { setMovies ,setLogin } )(MainView);
