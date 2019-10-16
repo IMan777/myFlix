@@ -147,14 +147,11 @@ import "./main-view.scss";
 
             
 
-            <Route
-              path="/movies/:movieId"
-              render={({ match }) => (
-                <MovieView
-                  movie={movies.find(m => m._id === match.params.movieId)}
-                />
-              )}
-            />
+            <Route 
+              path="/movies/:movieId" 
+              render={({match}) => 
+              <MovieView movie={movies.find(movie => movie._id === match.params.movieId)}/>}
+              />
             <Route
               path="/directors/:name"
               render={({ match }) => {
@@ -162,7 +159,7 @@ import "./main-view.scss";
                 return (
                   <DirectorView
                     director={
-                      movies.find(m => m.Director.Name === match.params.name).Director
+                      movies.find(movie => movie.Director.Name === match.params.name).Director
 
                     }
                   />
@@ -176,7 +173,7 @@ import "./main-view.scss";
                 return (
                   <GenreView
                     genre={
-                      movies.find(m => m.Genre.Name === match.params.name).Genre
+                      movies.find(movie => movie.Genre.Name === match.params.name).Genre
                     }
                   />
                 );
