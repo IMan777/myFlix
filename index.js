@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const Models = require('./models.js');
 const cors = require('cors');
-
+const path = require("path");
 
 const port = process.env.PORT || 5000;
 
-const path = require("path");
+
 
 const Movies = Models.Movie;
 const Users =  Models.User;
