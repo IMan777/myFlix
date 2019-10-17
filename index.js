@@ -1,10 +1,11 @@
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");  /*Declarations*/
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Models = require('./models.js');
 const cors = require('cors');
-const path = require("path");
+
 
 const port = process.env.PORT || 5000;
 
@@ -33,10 +34,10 @@ const auth = require('./auth.js') (app);
 
 app.use(express.static("public"));
 app.use('/client', express.static(path.join(__dirname, 'client/dist')));
-
 app.get("/client/*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/dist", "index.html"));
 });
+
 
 app.get('/',(req,res) =>{
 
