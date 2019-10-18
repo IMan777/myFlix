@@ -202,4 +202,4 @@ import "./main-view.scss";
     );
   }
 }
-export default connect(mapStateToProps, { setMovies ,setLogin } )(MainView);
+export default connect(null, { setMovies ,setLogin } )(MainView);
