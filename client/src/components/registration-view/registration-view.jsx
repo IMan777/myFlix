@@ -28,6 +28,7 @@ export function RegistrationView(props) {
         window.open("/", "_self");
       })
       .catch(e => {
+        alert("User Not Registered");
         console.log("Error Registering New User");
       });
   };
