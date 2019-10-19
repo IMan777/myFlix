@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import "./profile-view.scss";
 
-import { LoginView } from "../login-view/login-view";
+
 import {connect} from 'react-redux';
 
-export class ProfileView extends React.Component {
+ class ProfileView extends React.Component {
 
   constructor(props) {
     super(props);
@@ -76,7 +76,7 @@ export class ProfileView extends React.Component {
     })
       .then(response => {
         this.getUser(localStorage.getItem('token'));
-        window.location.reload(<LoginView/>);
+        
         })
       .catch(event => {
         alert('Error');
@@ -90,7 +90,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    /*const { username, email, dob, favouriteFilms } = this.state;*/
+    const { username, email, dob } = this.state;
     
     const favoriteFilmsList = this.props.movies.filter (movie => this.state.favouriteFilms.includes(movie._id));
 
@@ -103,10 +103,10 @@ export class ProfileView extends React.Component {
                       <Card.Title className="title">Profile View</Card.Title>
                       <p className="title" style={{ textAlign: "center" }}>View Your Information.</p>
                        <p className="title" style={{ textAlign: "center"}}>Or Delete Membership (Proceed With Caution!)</p>
-                      <Card.Text>Username: {this.state.username}</Card.Text>
-                      <Card.Text>Email:  {this.state.email}</Card.Text>
+                      <Card.Text>Username: {username}</Card.Text>
+                      <Card.Text>Email:  {email}</Card.Text>
 
-                      <Card.Text>Birthday:  {this.state.dob}</Card.Text>
+                      <Card.Text>Birthday:  {dob}</Card.Text>
                         Favorite Movies:
                         { favoriteFilmsList.map(movie => (
                         <div key={movie._id} variant="success">
