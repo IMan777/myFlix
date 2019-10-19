@@ -8,10 +8,10 @@ import "./genre-view.scss";
 
 function GenreView (props) {
  
-    const { titleName , movies} = props;
+    const { genName, movies} = props;
     if (!movies) return null;
 
-    const movie = movies.find(movie => movie.Title === titleName);
+    const movie = movies.find(movie => movie.genre.Name === genName);
 
     return (
       <Card>
