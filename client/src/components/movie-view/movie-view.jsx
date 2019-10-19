@@ -46,7 +46,7 @@ import './movie-view.scss';
         <div>
           <Link to={`/genres/${movie.Genre.Name}`}><Button variant="link">Genre</Button></Link>
           <Link to={`/directors/${movie.Director.Name}`}><Button variant="link">Director</Button></Link>
-          <Link to={'/'}><Button variant="success" size='sm' >Movies</Button> </Link>
+          <Link to={`/`}><Button variant="success" size='sm' >Movies</Button> </Link>
 
                <Button variant="outline-primary" size="lg" onClick={event => addMovie(event)}> Add to Favourites </Button>
         </div>
