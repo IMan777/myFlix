@@ -59,7 +59,7 @@ export function LoginView(props) {
             Log In
           </Button>
           {"   "}
-          <Link to={"/register"}>
+          <Link to={`/register`}>
             <Button variant="dark">Resigter</Button>
           </Link>
         </div>
