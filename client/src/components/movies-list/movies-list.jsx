@@ -43,7 +43,7 @@ function MoviesList(props){
         <Button onClick={() => logOut()}>Log Out</Button>
         <Link to={`/users/:Username`}><Button>Profile</Button></Link>
 
-        <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+        <VisibilityFilterInput  />
     </div>
     <Row>
         {movies.map(movie => (
