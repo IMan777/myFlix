@@ -19,7 +19,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Navbar from 'react-bootstrap/Navbar';
 
-import {setLogin , setMovies} from '../../actions/actions';
+import {setMovies} from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 import  MovieView  from "../movie-view/movie-view";
 
@@ -55,12 +55,12 @@ import "./main-view.scss";
         headers: { Authorization: `Bearer ${token}` }    
       })
       .then(response => {
-       /* this.props.setMovies(response.data); */
-        this.setState({
+       this.props.setMovies(response.data); 
+       /* this.setState({
          
           movies: response.data 
 
-        });
+        });*/
       })
       .catch(function (error) {
         console.log(error);
@@ -95,7 +95,7 @@ import "./main-view.scss";
         headers: { Authorization: `Bearer ${token}` } 
       })
       .then(response => {
-       /* this.props.setLogin(response.data); */
+       
         this.setState({
           users: response.data 
         });
@@ -203,4 +203,4 @@ import "./main-view.scss";
     );
   }
 }
-export default connect(null, { setMovies ,setLogin } )(MainView);
+export default connect(null, { setMovies } )(MainView);
