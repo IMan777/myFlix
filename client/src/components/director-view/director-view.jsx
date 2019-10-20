@@ -11,7 +11,7 @@ function DirectorView(props)  {
     const { directorName , movies } = props;
     if (!movies) return null;
 
-    const director = movies.find(movie => movie.Director === directorName).Director;
+    const director = movies.find(movie => movie.Director.Name === directorName).Director;
     return (
       <Card>
         <h3 className="title">Director Info</h3>
