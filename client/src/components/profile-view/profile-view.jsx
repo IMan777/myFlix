@@ -75,7 +75,7 @@ import {connect} from 'react-redux';
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(response => {
-        this.getUser(localStorage.getItem('token'));
+        this.getUser(localStorage.getItem('token','user'));
         
         })
       .catch(event => {
@@ -105,11 +105,11 @@ import {connect} from 'react-redux';
                        <p className="title" style={{ textAlign: "center"}}>Or Delete Membership (Proceed With Caution!)</p>
                       <Card.Text>Username: {username}</Card.Text>
                       <Card.Text>Email:  {email}</Card.Text>
-
+                      <Card.Text>Password:  ****</Card.Text>
                       <Card.Text>Birthday:  {dob}</Card.Text>
                         Favorite Movies:
                         { favoriteFilmsList.map(movie => (
-                        <div key={movie._id} variant="success">
+                        <div key={movie._id} >
                         <Link  to={`/movies/${movie._id}`}>
                         <Button variant="link">{movie.Title}</Button>
                         </Link>
