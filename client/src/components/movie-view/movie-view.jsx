@@ -3,18 +3,15 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
-import {connect} from 'react-redux';
 
 import './movie-view.scss';
 
- function MovieView(props) {
+export function MovieView(props) {
  const {
-   movie, movies ,movieId
+    movie
   } = props;
-  if (!movies) return null;
- 
- /* const movie = movies.find(movie =>movie._id === movieId)*/
-
+  if (!movie) return null;
+  /*Displays Selected Movie Attributes */
   function addMovie(event) {
     event.preventDefault();
     console.log('click click boom')
@@ -46,7 +43,7 @@ import './movie-view.scss';
         <div>
           <Link to={`/genres/${movie.Genre.Name}`}><Button variant="link">Genre</Button></Link>
           <Link to={`/directors/${movie.Director.Name}`}><Button variant="link">Director</Button></Link>
-          <Link to={`/`}><Button variant="success" size='sm' >Movies</Button> </Link>
+          <Link to={'/'}><Button variant="success" size='sm' >Movies</Button> </Link>
 
                <Button variant="outline-primary" size="lg" onClick={event => addMovie(event)}> Add to Favourites </Button>
         </div>
@@ -58,5 +55,3 @@ import './movie-view.scss';
   );
 
 }
-
-export default connect (({movies}) =>({movies}))(MovieView);
