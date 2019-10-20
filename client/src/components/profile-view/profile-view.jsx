@@ -2,24 +2,22 @@ import React from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import "./profile-view.scss";
 
 
-import {connect} from 'react-redux';
 
- class ProfileView extends React.Component {
+export class ProfileView extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       username: null,
       password: null,
       email: null,
       dob: null,
       userData: null,
-      movies:[],
       favouriteFilms: []
     };
   }
@@ -75,7 +73,7 @@ import {connect} from 'react-redux';
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(response => {
-        this.getUser(localStorage.getItem('token','user'));
+        this.getUser(localStorage.getItem('token'));
         
         })
       .catch(event => {
@@ -90,46 +88,58 @@ import {connect} from 'react-redux';
   }
 
   render() {
-    const { username, email, dob } = this.state;
-    
-    const favoriteFilmsList = this.props.movies.filter (movie => this.state.favouriteFilms.includes(movie._id));
+    const { username, email, dob, favouriteFilms } = this.state;
 
     return (
      
-           <Container>
-                <Col>
-                   <Card style={{ width: '25rem' }} className="profileview">
-                      <Card.Body>
-                      <Card.Title className="title">Profile View</Card.Title>
-                      <p className="title" style={{ textAlign: "center" }}>View Your Information.</p>
-                       <p className="title" style={{ textAlign: "center"}}>Or Delete Membership (Proceed With Caution!)</p>
-                      <Card.Text>Username: {username}</Card.Text>
-                      <Card.Text>Email:  {email}</Card.Text>
-                      <Card.Text>Password:  ****</Card.Text>
-                      <Card.Text>Birthday:  {dob}</Card.Text>
-                        Favorite Movies:
-                        { favoriteFilmsList.map(movie => (
-                        <div key={movie._id} >
-                        <Link  to={`/movies/${movie._id}`}>
-                        <Button variant="link">{movie.Title}</Button>
-                        </Link>
-                        <Button variant='danger' size='sm' onClick={e => this.removeMovie(movie._id)}>Remove </Button>
-                        </div>
-                      ))
-                      }
-                     
-                     <Button variant='danger' size='sm' onClick={() => this.removeUser(username)}>Delete Profile</Button>
-                      </Card.Body>
-                  </Card>   
-                  
-                </Col>
-              </Container>
+      <Card style={{ width: '25rem' }} className="profileview">
+      
+        <Card.Body >
+        
+          <Card.Title className="title">Profile View</Card.Title>
+          <p className="title" style={{ textAlign: "center" }}>View Your Information.</p>
+          <p className="title" style={{ textAlign: "center"}}>Or Delete Membership (Proceed With Caution!)</p>
+          <ListGroup>
+            <ListGroup.Item>Username: {username}</ListGroup.Item>
+            <ListGroup.Item>Password: xxxxx </ListGroup.Item>
+            <ListGroup.Item>Email: {email}</ListGroup.Item>
+            <ListGroup.Item>Birthday: {dob}</ListGroup.Item>
+            <ListGroup.Item>Favourite Films:
+            {this.props.movies.map(movie => {
+              if (movie._id === favouriteFilms.find(favFilm => favFilm === movie._id)) {
+                return <p key={movie._id}>{movie.Title}    <Button variant='danger' size='sm' onClick={() => this.removeMovie(movie._id)}>Remove</Button></p>
+              } else if (!favouriteFilms) {
+                return <p>No Favorite Movies</p>
+              }
+            })}
+            </ListGroup.Item>
+            <ListGroupItem><Button variant='danger' size='sm' onClick={() => this.removeUser(username)}>Delete Profile</Button></ListGroupItem>
+          </ListGroup>
+          
+        </Card.Body>
+        
+      </Card>
+     
      
     );
   }
-}
 
-export default connect (({movies , users}) =>({movies,users}))(ProfileView);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
