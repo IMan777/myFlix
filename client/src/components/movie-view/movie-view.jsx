@@ -13,7 +13,7 @@ import './movie-view.scss';
   } = props;
   if (!movies) return null;
  
-  const movie = movies.find(movie =>movie._id === movieId)
+ /* const movie = movies.find(movie =>movie._id === movieId)*/
 
   function addMovie(event) {
     event.preventDefault();
