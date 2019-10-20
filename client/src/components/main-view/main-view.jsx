@@ -55,12 +55,12 @@ import "./main-view.scss";
         headers: { Authorization: `Bearer ${token}` }    
       })
       .then(response => {
-        this.props.setMovies(response.data);
-       /* this.setState({
+       /* this.props.setMovies(response.data); */
+        this.setState({
          
           movies: response.data 
 
-        });*/
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -92,13 +92,13 @@ import "./main-view.scss";
   getUser(token) {
     axios
       .get("https://my-flix-10.herokuapp.com/users", {
-        headers: { Authorization: `Bearer ${token}` } /*Will Review*/
+        headers: { Authorization: `Bearer ${token}` } 
       })
       .then(response => {
-        this.props.setLogin(response.data);
-       /* this.setState({
+       /* this.props.setLogin(response.data); */
+        this.setState({
           users: response.data 
-        });*/
+        });
       })
       .catch(function (error) {
         console.log(error);
