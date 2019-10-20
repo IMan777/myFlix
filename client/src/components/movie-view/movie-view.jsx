@@ -9,7 +9,7 @@ import './movie-view.scss';
 
  function MovieView(props) {
  const {
-    movies ,movieId
+   movie, movies ,movieId
   } = props;
   if (!movies) return null;
  
