@@ -19,7 +19,7 @@ const mapStateToProps = state => {
     });
 
     if (visibilityFilter !== '') {
-        moviesDisplay = moviesDisplay.filter(movie => movie.Title.toLowerCase().includes(visibilityFilter.toLowerCase()));
+        moviesDisplay = moviesDisplay.filter(m => m.Title.toLowerCase().includes(visibilityFilter.toLowerCase()));
     }
     return { movies: moviesDisplay };
 };
@@ -46,9 +46,9 @@ function MoviesList(props){
         <VisibilityFilterInput  />
     </div>
     <Row>
-        {movies.map(movie => (
-        <Col key={movie._id} xs={8} sm={6} md={4} lg={4}>
-            <MovieCard key={movie._id} movie={movie} />
+        {movies.map(m => (
+        <Col key={m._id} xs={8} sm={6} md={4} lg={4}>
+            <MovieCard key={m._id} movie={m} />
         </Col>
         ))
         }
