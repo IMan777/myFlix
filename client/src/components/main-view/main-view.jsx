@@ -152,7 +152,7 @@ import "./main-view.scss";
             <Route 
               path="/movies/:movieId" 
               render={({match}) => 
-              <MovieView movieId={match.params.movieId}/>}
+              <MovieView movieId={match.params.id}/>}
               />
             <Route
               path="/directors/:name"
