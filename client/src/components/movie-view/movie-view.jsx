@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import './movie-view.scss';
 
-export function MovieView(props) {
+ function MovieView(props) {
  const {
     movies ,movieId
   } = props;
