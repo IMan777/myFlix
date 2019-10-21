@@ -129,7 +129,7 @@ import {connect} from 'react-redux';
   }
 }
 
-export default connect (({movies , users}) =>({movies,users}) )(ProfileView);
+export default connect (({movies , users}) =>({movies,users}))(ProfileView);
 
 
 
