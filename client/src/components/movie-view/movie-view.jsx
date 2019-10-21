@@ -13,7 +13,8 @@ export function MovieView(props) {
   } = props;
   if (!movie) return null;
   const movie = movies.find(m => m._id === movieId);
-  /*Displays Selected Movie Attributes */
+  
+  
   function addMovie(event) {
     event.preventDefault();
     console.log('click click boom')
