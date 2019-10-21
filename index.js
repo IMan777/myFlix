@@ -62,7 +62,7 @@ app.get('/movies',passport.authenticate('jwt',{ session:false}), function(req , 
     }); 
 });
 
-app.get('/movies/:Title',passport.authenticate('jwt',{ session:false}), function(req , res){
+app.get('/movies/:Title', function(req , res){
     
     Movies.find({Title : req.params.Title})
      .then(function(movies){
