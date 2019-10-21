@@ -8,13 +8,13 @@ export function setMovies (value){
 }
 
 export function setFilter(value){
-    return { type: SET_FILTER,value};
+    return { type: SET_FILTER, value};
 }
 
 export function setLogin(value){
-    return { type: SET_LOGIN,value};
+    return { type: SET_LOGIN, value};
 }
 
 export function setSort(value){
-    return { type: SET_SORT,value};
+    return { type: SET_SORT, value};
 }
