@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import { Link } from "react-router-dom";
 import "./profile-view.scss";
 
 
@@ -76,7 +77,7 @@ import {connect} from 'react-redux';
     })
       .then(response => {
         this.getUser(localStorage.getItem('token','user'));
-        
+        alert('Profile Deleted');
         })
       .catch(event => {
         alert('Error');
@@ -113,6 +114,7 @@ import {connect} from 'react-redux';
                         <Link  to={`/movies/${movie._id}`}>
                         <Button variant="link">{movie.Title}</Button>
                         </Link>
+                        {"  "}
                         <Button variant='danger' size='sm' onClick={e => this.removeMovie(movie._id)}>Remove </Button>
                         </div>
                       ))
