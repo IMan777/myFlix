@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import { Link } from "react-router-dom";
 import "./profile-view.scss";
 
 
@@ -110,11 +109,8 @@ import {connect} from 'react-redux';
                       <Card.Text>Birthday:  {dob}</Card.Text>
                         Favorite Movies:
                         { favoriteFilmsList.map(movie => (
-                        <div key={movie._id} >
-                        <Link  to={`/movies/${movie._id}`}>
-                        <Button variant="link">{movie.Title}</Button>
-                        </Link>
-                        {"  "}
+                        <div key={movie._id} >{movie.Title}
+                       {"  "}
                         <Button variant='danger' size='sm' onClick={e => this.removeMovie(movie._id)}>Remove </Button>
                         </div>
                       ))
