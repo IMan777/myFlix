@@ -9,9 +9,9 @@ import {connect} from "react-redux";
 
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
-import { DirectorView } from "../director-view/director-view";
-import { GenreView } from "../genre-view/genre-view";
-import { ProfileView } from "../profile-view/profile-view";
+import  DirectorView  from "../director-view/director-view";
+import  GenreView from "../genre-view/genre-view";
+import ProfileView  from "../profile-view/profile-view";
 import { ProfileEdit } from "../profile-view/profile-edit";
 
 import Container from "react-bootstrap/Container";
@@ -90,15 +90,16 @@ import "./main-view.scss";
 
 
   getUser(token) {
+    let username = localStorage.getItem('user');
     axios
-      .get("https://my-flix-10.herokuapp.com/users", {
+      .get(`https://my-flix-10.herokuapp.com/users/${username}`, {
         headers: { Authorization: `Bearer ${token}` } 
       })
       .then(response => {
         this.props.setLogin(authData.user);
-        this.setState({
+       /* this.setState({
           users: response.data 
-        });
+        });*/
       })
       .catch(function (error) {
         console.log(error);
@@ -151,7 +152,7 @@ import "./main-view.scss";
             <Route 
               path="/movies/:movieId" 
               render={({match}) => 
-              <MovieView movie={movies.find(movie => movie._id === match.params.movieId)}/>}
+              <MovieView movieId={match.params.movieId}/>}
               />
             <Route
               path="/directors/:name"
@@ -159,8 +160,8 @@ import "./main-view.scss";
                 if (!movies) return <div className="main-view" />;
                 return (
                   <DirectorView
-                    director={
-                      movies.find(movie => movie.Director.Name === match.params.name).Director
+                    directorName={
+                      match.params.Name
 
                     }
                   />
@@ -173,8 +174,8 @@ import "./main-view.scss";
                 if (!movies) return <div className="main-view" />;
                 return (
                   <GenreView
-                    genre={
-                      movies.find(movie => movie.Genre.Name === match.params.name).Genre
+                    titleName={
+                      match.params.Name
                     }
                   />
                 );
@@ -182,9 +183,9 @@ import "./main-view.scss";
             />
             <Route
               path="/users/:Username"
-              render={({ match }) => {
-                return <ProfileView userDetails={userDetails} movies={movies} />;
-              }}
+              render={() => 
+              <ProfileView movies={movies} />
+              }
             />
             <Route
               path="/edit/:Username"
