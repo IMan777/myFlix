@@ -23,7 +23,7 @@ function GenreView (props) {
             <br />
           </Card.Text>
           <div>
-            <Link to={'/movies/:movieId'}>
+            <Link to={'/'}>
               <Button variant="dark">Return</Button>
             </Link>
           </div>
