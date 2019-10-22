@@ -8,10 +8,10 @@ import "./director-view.scss";
 
 function DirectorView(props)  {
   
-    const { directorName , movies } = props;
-    if (!movies) return null;
+    const { director } = props;
+    if (!director) return null;
 
-    const director = movies.find(movie => movie.Director.Name === directorName).Director;
+   
     return (
       <Card>
         <h3 className="title">Director Info</h3>
