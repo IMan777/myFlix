@@ -8,18 +8,18 @@ import "./genre-view.scss";
 
 function GenreView (props) {
  
-    const { titleName, movies} = props;
-    if (!movies) return null;
+    const { genre} = props;
+    if (!genre) return null;
 
-    const movie = movies.find(movie => movie.Title === titleName);
+    
 
     return (
       <Card>
         <h3 className="title">Genre Info</h3>
         <Card.Body className="genreview">
-          <Card.Title>{movie.genre.Name}</Card.Title>
+          <Card.Title>{genre.Name}</Card.Title>
           <Card.Text>
-            Description:{movie.genre.Description}
+            Description:{genre.Description}
             <br />
           </Card.Text>
           <div>
