@@ -68,6 +68,13 @@ import {connect} from 'react-redux';
         alert('Error');
       });
   }
+
+  onLoggedOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+   
+    
+  }
   removeUser(username) {
     event.preventDefault();
 
@@ -77,6 +84,7 @@ import {connect} from 'react-redux';
       .then(response => {
         this.getUser(localStorage.getItem('token','user'));
         alert('Profile Deleted');
+        this.onLoggedOut();
         })
       .catch(event => {
         alert('Error');
