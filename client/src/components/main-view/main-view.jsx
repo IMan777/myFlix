@@ -114,7 +114,8 @@ import "./main-view.scss";
   }
 
   render() {
-    const { movies, user, token, userDetails } = this.state;
+    const {movies} =this.props;
+    const { user, token, userDetails } = this.state;
 
     if (!movies) return <div className="main-view" />;
 
@@ -206,5 +207,9 @@ import "./main-view.scss";
       </Router>
     );
   }
+  
 }
-export default connect(null, { setMovies , setLogin } )(MainView);
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+export default connect(mapStateToProps, { setMovies , setLogin } )(MainView);
