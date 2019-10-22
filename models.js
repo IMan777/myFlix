@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const d = Date;
-const dateDisplay = d.toLocaleString();
+
 
 var movieSchema = mongoose.Schema({
    Title : {type: String, required: true},
@@ -14,7 +13,7 @@ var movieSchema = mongoose.Schema({
     Director :{
         Name: String,
         Bio  :String,
-        Birth: dateDisplay,
+        Birth: Date,
     },
     ImagePath: String,
     Featured: Boolean
@@ -25,7 +24,7 @@ var userSchema = mongoose.Schema({
     Username : {type: String, required: true}, /*User Schema Defined*/
     Password : {type: String, required: true},
     Email : {type: String, required: true},
-    DOB : dateDisplay,
+    DOB : Date,
     FavoriteFilms : [{type: mongoose.Schema.Types.ObjectId, ref: 'Movies'}] 
 });
 
