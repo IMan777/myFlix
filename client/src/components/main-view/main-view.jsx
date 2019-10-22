@@ -121,6 +121,7 @@ import "./main-view.scss";
     return (
       <Router basename="/client">
         <Container>
+          
           <Navbar className="navigateBar" bg="light"  sticky="top" >
             <Link to={"/users/${user}"}>
               <Button variant="secondary" size="sm">View Profile</Button>
@@ -151,17 +152,19 @@ import "./main-view.scss";
 
             <Route 
               path="/movies/:movieId" 
-              render={({match}) => 
-              <MovieView movies={match.params.movieId}/>}
+              render={({match}) => (
+              <MovieView movie={movies.find(m => m._id === match.params.movieId)}
               />
+              )}
+              /> 
             <Route
               path="/directors/:name"
               render={({ match }) => {
                 if (!movies) return <div className="main-view" />;
                 return (
                   <DirectorView
-                    directorName={
-                      match.params.Name
+                    director={
+                      movies.find(m => m.Director.Name === match.params.name).Director
 
                     }
                   />
@@ -174,8 +177,8 @@ import "./main-view.scss";
                 if (!movies) return <div className="main-view" />;
                 return (
                   <GenreView
-                    titleName={
-                      match.params.Name
+                    genre={
+                      movies.find(m => m.Genre.Name === match.params.name).Genre
                     }
                   />
                 );
