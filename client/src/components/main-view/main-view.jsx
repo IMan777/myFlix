@@ -118,7 +118,7 @@ import "./main-view.scss";
     const { user, token, userDetails } = this.state;
 
     if (!movies) return <div className="main-view" />;
-    if (!user) return   ;
+    
     return (
       <Router basename="/client">
         <Container>
