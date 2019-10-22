@@ -40,8 +40,8 @@ function MoviesList(props){
 
 <Container>
     <div>
-        <Button onClick={() => logOut()}>Log Out</Button>
-        <Link to={`/users/:Username`}><Button>Profile</Button></Link>
+        <Button variant="success" size="sm" onClick={() => logOut()}>Log Out</Button>
+        <Link to={`/users/:Username`}><Button variant="success" size="sm">Profile</Button ></Link>
 
         <VisibilityFilterInput  />
     </div>
