@@ -23,7 +23,7 @@ function DirectorView(props)  {
             DOB:{director.Birth}
           </Card.Text>
           <div>
-            <Link to={'/'}>
+            <Link to={'/movies/:movieId'}>
               <Button variant="dark">Return</Button>
             </Link>
           </div>
