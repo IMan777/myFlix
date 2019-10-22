@@ -118,7 +118,7 @@ import "./main-view.scss";
     const { user, token, userDetails } = this.state;
 
     if (!movies) return <div className="main-view" />;
-
+    if (!user) return   <Navbar className="navigateBar" bg="light"  sticky="top" > <h3 className="appTitle">My Flix App!</h3></Navbar>;
     return (
       <Router basename="/client">
         <Container>
