@@ -9,10 +9,10 @@ import './movie-view.scss';
 
  function MovieView(props) {
  const {
-    movies ,movieId
+    movie 
   } = props;
   if (!movie) return null;
-  const movie = movies.find(m => m._id === movieId);
+  
   
   
   function addMovie(event) {
