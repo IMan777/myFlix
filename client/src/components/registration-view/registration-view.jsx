@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 
+
 import "./registration-view.scss";
 
 export function RegistrationView(props) {
@@ -33,8 +34,13 @@ export function RegistrationView(props) {
       });
   };
 
+  
+
   return (
     <Container>
+     
+          
+        
       <Form className="registrationForm">
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username:</Form.Label>
