@@ -43,7 +43,7 @@ app.get("/client/*", (req, res) => {
 
 app.get('/',(req,res) =>{
 
-res.send('Welcome To My Flix App!<p><a href="https://my-flix-10.herokuapp.com/client/">Return To Login Page</a></p>'); /*Default Greeting*/
+res.send('<h1>Welcome To My Flix App!</h1><p><a href="https://my-flix-10.herokuapp.com/client/">Please Login</a></p>'); /*Default Greeting*/
 
 });
 
