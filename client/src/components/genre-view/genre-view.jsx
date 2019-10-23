@@ -2,9 +2,10 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-
+import Container from "react-bootstrap/Container";
 import {connect} from "react-redux";
 import "./genre-view.scss";
+
 
 function GenreView (props) {
  
@@ -14,6 +15,8 @@ function GenreView (props) {
     
 
     return (
+      <Container>
+        
       <Card>
         <h3 className="title">Genre Info</h3>
         <Card.Body className="genreview">
@@ -29,6 +32,7 @@ function GenreView (props) {
           </div>
         </Card.Body>
       </Card>
+      </Container> 
     );
   }
 
