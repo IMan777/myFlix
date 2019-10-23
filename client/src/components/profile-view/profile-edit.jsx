@@ -54,8 +54,16 @@ export function ProfileEdit(props) {
       });
   };
 
+  function logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    window.location.reload();
+    
+}
+
   return (
     <Container>
+      
       <Form className="profileedit">
         <h3 className="title">Profile Edit</h3>
         <p style={{ textAlign: "center" }}>
