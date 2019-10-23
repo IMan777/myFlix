@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import './movie-view.scss';
 
+
  function MovieView(props) {
  const {
     movie 
@@ -33,8 +34,11 @@ import './movie-view.scss';
       });
   };
 
+  
+
   return (
-    <div >
+    <div>
+      
       <Card className="view-movie">
       <Card.Img variant="top" className="movie-poster" src={movie.ImagePath} />
       <Card.Body style={{ width: '16rem' }} >
