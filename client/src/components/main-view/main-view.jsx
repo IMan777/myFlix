@@ -118,7 +118,7 @@ import "./main-view.scss";
     const { user, token, userDetails } = this.state;
 
     if (!movies) return <div className="main-view" />;
-    
+
     return (
       <Router basename="/client">
         <Container>
@@ -144,8 +144,7 @@ import "./main-view.scss";
           <Row>
           
            <Route exact path="/" render={() => {
-             if (!user) return <Container> <Navbar className="navigateBar" bg="light"  sticky="top" > <h3 className="appTitle">My Flix App!</h3></Navbar>
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} /></Container>;
+             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
              return <MoviesList/>;
             }} />
             <Route path="/register" render={() => <RegistrationView />} />
