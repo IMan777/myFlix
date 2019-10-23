@@ -4,10 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import {connect} from 'react-redux';
 import "./profile-view.scss";
 
-
-import {connect} from 'react-redux';
 
  class ProfileView extends React.Component {
 
@@ -83,8 +82,8 @@ import {connect} from 'react-redux';
     })
       .then(response => {
         this.getUser(localStorage.getItem('token','user'));
-        alert('Profile Deleted');
-        this.onLoggedOut();
+       
+        window.open("/", "_self");
         })
       .catch(event => {
         alert('Error');
@@ -105,6 +104,7 @@ import {connect} from 'react-redux';
     return (
      
            <Container>
+            
                 <Col>
                    <Card style={{ width: '25rem' }} className="profileview">
                       <Card.Body>
