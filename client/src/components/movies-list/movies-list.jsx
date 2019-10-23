@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
-
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input'
 import { MovieCard } from '../movie-card/movie-card';
 import Container from 'react-bootstrap/Container';
@@ -39,6 +38,7 @@ function MoviesList(props){
     return (
 
 <Container>
+
     <div>
         <Button variant="success" size="sm" onClick={() => logOut()}>Log Out</Button>
         <Link to={`/users/:Username`}><Button variant="success" size="sm">Profile</Button ></Link>
